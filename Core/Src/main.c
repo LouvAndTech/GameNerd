@@ -27,6 +27,9 @@
 #include "../lib/ssd1306.h"
 #include "../lib/ssd1306_tests.h"
 
+//include game
+#include "../game/pong/pong.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -57,7 +60,7 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+int8_t buttonStats[] = {0,0,0,0,0,0,0,0};
 /* USER CODE END 0 */
 
 /**
@@ -92,10 +95,6 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   ssd1306_Init();
-    int8_t x = 64;
-    int8_t sensx = 2;
-    int8_t y = 32;
-    int8_t sensy = 1;
 
   /* USER CODE END 2 */
 
@@ -107,27 +106,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-	  //ssd1306_TestAll();
-	  	  //HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_SET);
-	  	  //HAL_Delay(1000);
-	  	  //HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_RESET);
-	  	  //HAL_Delay(1000);
-	  	  if(x>=128){
-	  	  	 sensx=-sensx;
-	  	  }else if(x<=10){
-	  		  sensx=-sensx;
-	  	  }
-	  	  if(y>=64){
-	  	  	 sensy=-sensy;
-	  	  }else if(y<=10){
-	  		  sensy=-sensy;
-	  	  }
-	  	  x+=sensx;
-	  	  y+=sensy;
-	  	  ssd1306_Fill(Black);
-	  	    ssd1306_DrawCircle(x-5, y-5, 5, White);
-	  	    ssd1306_UpdateScreen();
-	  	    //HAL_Delay(1);
+	  pong();
 
   }
   /* USER CODE END 3 */
@@ -180,6 +159,33 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+void readButton(void){
+	static int8_t it = 0;
+	if(it >= 10){
+		it = 0;
+		for(int i=0; i<7; i++){
+			buttonStats[i] = (int8_t)HAL_GPIO_ReadPin(GPIOE, 1<<i);
+		}
+		buttonStats[7] = (int8_t)HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13);
+	}else{
+		it++;
+	}
+}
+
+InputButton getButtonStats(void){
+	InputButton ib = {
+			buttonStats[0],
+			buttonStats[1],
+			buttonStats[2],
+			buttonStats[3],
+			buttonStats[4],
+			buttonStats[5],
+			buttonStats[6],
+			buttonStats[7]
+	};
+	return ib;
+}
 
 /* USER CODE END 4 */
 
