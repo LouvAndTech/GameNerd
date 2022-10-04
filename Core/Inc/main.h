@@ -36,12 +36,22 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
-
+typedef struct{
+	int8_t Select;
+	int8_t Top;
+	int8_t Start;
+	int8_t Right;
+	int8_t A;
+	int8_t Left;
+	int8_t B;
+	int8_t Bottom;
+}InputButton;
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/
 /* USER CODE BEGIN EC */
-
+void readButton(void);
+InputButton getButtonStats(void);
 /* USER CODE END EC */
 
 /* Exported macro ------------------------------------------------------------*/
@@ -57,12 +67,28 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define btn_Start_Pin GPIO_PIN_2
+#define btn_Start_GPIO_Port GPIOE
+#define btn_Right_Pin GPIO_PIN_3
+#define btn_Right_GPIO_Port GPIOE
+#define btn_A_Pin GPIO_PIN_4
+#define btn_A_GPIO_Port GPIOE
+#define btn_Left_Pin GPIO_PIN_5
+#define btn_Left_GPIO_Port GPIOE
+#define btn_B_Pin GPIO_PIN_6
+#define btn_B_GPIO_Port GPIOE
+#define btn_Bottom_Pin GPIO_PIN_13
+#define btn_Bottom_GPIO_Port GPIOC
 #define OLED_CS_Pin GPIO_PIN_0
 #define OLED_CS_GPIO_Port GPIOC
 #define OLED_DC_Pin GPIO_PIN_1
 #define OLED_DC_GPIO_Port GPIOC
 #define OLED_Res_Pin GPIO_PIN_0
 #define OLED_Res_GPIO_Port GPIOB
+#define btn_Select_Pin GPIO_PIN_0
+#define btn_Select_GPIO_Port GPIOE
+#define btn_Top_Pin GPIO_PIN_1
+#define btn_Top_GPIO_Port GPIOE
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
