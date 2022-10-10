@@ -26,6 +26,7 @@
 
 #include "../lib/ssd1306.h"
 #include "../lib/ssd1306_tests.h"
+#include "w25qxx.h"
 
 //include game
 #include "../game/pong/pong.h"
@@ -60,6 +61,8 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+uint8_t indexFlash[1] = {0};
 int8_t buttonStats[] = {0,0,0,0,0,0,0,0};
 /* USER CODE END 0 */
 
@@ -95,6 +98,13 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   ssd1306_Init();
+
+
+  W25qxx_Init();
+
+  //HAL_Delay(500);
+
+  W25qxx_ReadBlock(indexFlash, 1, 0, 1);
 
   /* USER CODE END 2 */
 
