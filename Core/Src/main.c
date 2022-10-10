@@ -18,6 +18,8 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "fatfs.h"
+#include "sdio.h"
 #include "spi.h"
 #include "gpio.h"
 
@@ -26,6 +28,11 @@
 
 #include "../lib/ssd1306.h"
 #include "../lib/ssd1306_tests.h"
+#include "../../FATFS/Target/sd_diskio.h"
+#include "../../Middlewares/Third_Party/FatFs/src/ff_gen_drv.h"
+#include "../../Middlewares/Third_Party/FatFs/src/diskio.h"
+#include "../../Middlewares/Third_Party/FatFs/src/ff.h"
+#include "integer.h"
 
 /* USER CODE END Includes */
 
@@ -89,14 +96,22 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_SPI1_Init();
+  MX_SDIO_SD_Init();
+  //MX_FATFS_Init();
   /* USER CODE BEGIN 2 */
 
+  //SD_initialize();
   ssd1306_Init();
-    int8_t x = 64;
-    int8_t sensx = 2;
-    int8_t y = 32;
-    int8_t sensy = 1;
 
+  FATFS mynewdiskFatFs;
+  FIL myFile;
+  char newDiskPath[4];
+
+  char buffer[32];
+  uint32_t wbytes;
+
+  BYTE work[512];
+  FRESULT res = 0;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -107,12 +122,33 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-	  //ssd1306_TestAll();
-	  	  //HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_SET);
-	  	  //HAL_Delay(1000);
-	  	  //HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_RESET);
-	  	  //HAL_Delay(1000);
-	  	  if(x>=128){
+	  ssd1306_Fill(Black);										//Fill the screen with black
+	  ssd1306_SetCursor(2,0);
+	  ssd1306_WriteString("Testing...", Font_6x8, White);
+	  ssd1306_UpdateScreen();
+
+	  if (FATFS_LinkDriver(&SD_Driver, newDiskPath) == 0){				//Link a driver to the path of the disk ????
+	//	  res = f_mkfs(&newDiskPath, FM_FAT32, 512, work, sizeof work);
+
+		  res = f_mount(&mynewdiskFatFs,(TCHAR const*)newDiskPath, 1);
+		  HAL_Delay(3000);
+		  if ( res == FR_OK){	//Mount the disk
+			  if (f_open(&myFile, "0:toto.txt", FA_OPEN_ALWAYS | FA_READ )==FR_OK){						//Open the file
+				  if(f_read(&myFile,buffer,sizeof(buffer),(void *)wbytes)==FR_OK){		//Read from the file into the buffer, with ????
+					  ssd1306_WriteString(buffer,Font_6x8, White);			//Print the buffer into the screen
+					  ssd1306_UpdateScreen();
+					  f_close(&myFile);											//Close the file
+				  }
+			  }
+		  }
+	  }
+	  //FATFS_UnLinkDriver(newDiskPath);							//Unlink the Disk (without un-mounting it ????)
+	  while(1){
+		  continue;
+	  }
+
+
+	  /*if(x>=128){
 	  	  	 sensx=-sensx;
 	  	  }else if(x<=10){
 	  		  sensx=-sensx;
@@ -127,7 +163,7 @@ int main(void)
 	  	  ssd1306_Fill(Black);
 	  	    ssd1306_DrawCircle(x-5, y-5, 5, White);
 	  	    ssd1306_UpdateScreen();
-	  	    //HAL_Delay(1);
+	  	    //HAL_Delay(1);*/
 
   }
   /* USER CODE END 3 */
@@ -150,15 +186,14 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
-  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
-  RCC_OscInitStruct.PLL.PLLM = 8;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLM = 4;
   RCC_OscInitStruct.PLL.PLLN = 168;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-  RCC_OscInitStruct.PLL.PLLQ = 4;
+  RCC_OscInitStruct.PLL.PLLQ = 7;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();

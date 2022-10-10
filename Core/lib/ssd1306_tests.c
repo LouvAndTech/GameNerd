@@ -272,6 +272,14 @@ void ssd1306_TestDrawBitmap()
     ssd1306_UpdateScreen();
 }
 
+void ssd1306_TestDrawGithub()
+{
+	ssd1306_Init();
+    ssd1306_Fill(Black);
+    ssd1306_DrawBitmap(32,0,github_logo_64x64,64,64,White);
+    ssd1306_UpdateScreen();
+}
+
 void ssd1306_TestAll() {
     ssd1306_Init();
     ssd1306_TestFPS();
