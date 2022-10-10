@@ -26,6 +26,7 @@
 
 #include "../lib/ssd1306.h"
 #include "../lib/ssd1306_tests.h"
+#include "w25qxx.h"
 
 //include game
 #include "../game/pong/pong.h"
@@ -61,6 +62,11 @@ void SystemClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 int8_t buttonStats[] = {0,0,0,0,0,0,0,0};
+
+uint8_t indexFlash[1] = {0};
+uint8_t buffer1[20];
+uint8_t buffer2[100] = {0};
+
 /* USER CODE END 0 */
 
 /**
@@ -92,9 +98,30 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_SPI1_Init();
+  MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
 
   ssd1306_Init();
+
+  /* --------- differente commande for flash memeorie */
+  W25qxx_Init();
+
+  //W25qxx_ReadBlock(buffer1, 2+(idButton*2)+1, 0, 100);
+  W25qxx_ReadBlock(indexFlash, 1, 0, 1);
+
+
+  indexFlash[0]++;
+  W25qxx_EraseBlock(1);
+  W25qxx_WriteBlock(indexFlash, 1, 0, 1);
+
+
+  W25qxx_ReadBlock(indexFlash, 1, 0, 1);
+
+  //W25qxx_EraseBlock(2+((indexFlash[0])*2)+1);
+  //W25qxx_EraseBlock(2+((indexFlash[0])*2)+2);
+  //W25qxx_WriteBlock(namePass, 2+((indexFlash[0])*2)+1, 0, 21);
+  //W25qxx_WriteBlock(passwordStr, 2+((indexFlash[0])*2)+2, 0, 100);
+
 
   /* USER CODE END 2 */
 
@@ -105,8 +132,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
-	  pong();
+	pong();
 
   }
   /* USER CODE END 3 */

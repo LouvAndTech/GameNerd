@@ -85,6 +85,8 @@ void Error_Handler(void);
 #define OLED_DC_GPIO_Port GPIOC
 #define OLED_Res_Pin GPIO_PIN_0
 #define OLED_Res_GPIO_Port GPIOB
+#define Flash_CS_Pin GPIO_PIN_15
+#define Flash_CS_GPIO_Port GPIOE
 #define btn_Select_Pin GPIO_PIN_0
 #define btn_Select_GPIO_Port GPIOE
 #define btn_Top_Pin GPIO_PIN_1
