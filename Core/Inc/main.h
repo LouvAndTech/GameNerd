@@ -72,8 +72,6 @@ typedef struct{
 
 /* Exported constants --------------------------------------------------------*/
 /* USER CODE BEGIN EC */
-void readButton(void);
-InputButton getButtonStats(void);
 /* USER CODE END EC */
 
 /* Exported macro ------------------------------------------------------------*/
