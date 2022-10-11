@@ -60,7 +60,7 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-int8_t buttonStats[] = {0,0,0,0,0,0,0,0};
+
 /* USER CODE END 0 */
 
 /**
@@ -160,32 +160,6 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 
-void readButton(void){
-	static int8_t it = 0;
-	if(it >= 10){
-		it = 0;
-		for(int i=0; i<7; i++){
-			buttonStats[i] = (int8_t)HAL_GPIO_ReadPin(GPIOE, 1<<i);
-		}
-		buttonStats[7] = (int8_t)HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13);
-	}else{
-		it++;
-	}
-}
-
-InputButton getButtonStats(void){
-	InputButton ib = {
-			buttonStats[0],
-			buttonStats[1],
-			buttonStats[2],
-			buttonStats[3],
-			buttonStats[4],
-			buttonStats[5],
-			buttonStats[6],
-			buttonStats[7]
-	};
-	return ib;
-}
 
 /* USER CODE END 4 */
 

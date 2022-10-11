@@ -5,6 +5,7 @@
  *      Author: julie
  */
 #include "main.h"
+#include "Controler.h"
 
 #include "../lib/ssd1306.h"
 #include "../lib/ssd1306_tests.h"
@@ -16,8 +17,11 @@ int8_t sensy = 1;
 int8_t fill = 0;
 int8_t start = 0;
 
+InputButton buttonStats;
+
 void pong(void){
-	InputButton buttonStats = getButtonStats();
+	getButtonStats(&buttonStats);
+	//InputButton buttonStats = getButtonStats();
 	/*
 	if(x>=128){
 		sensx=-sensx;

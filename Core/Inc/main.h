@@ -36,22 +36,11 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
-typedef struct{
-	int8_t Select;
-	int8_t Top;
-	int8_t Start;
-	int8_t Right;
-	int8_t A;
-	int8_t Left;
-	int8_t B;
-	int8_t Bottom;
-}InputButton;
+
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/
 /* USER CODE BEGIN EC */
-void readButton(void);
-InputButton getButtonStats(void);
 /* USER CODE END EC */
 
 /* Exported macro ------------------------------------------------------------*/
