@@ -1,0 +1,17 @@
+Removed Pin From Net: NetName=CS_2 Pin=U2-1
+Removed Pin From Net: NetName=MISO_2 Pin=U2-2
+Removed Pin From Net: NetName=3v3 Pin=U2-3
+Removed Pin From Net: NetName=GND Pin=U2-4
+Removed Pin From Net: NetName=MOSI_2 Pin=U2-5
+Removed Pin From Net: NetName=SCLK_2 Pin=U2-6
+Removed Pin From Net: NetName=3v3 Pin=U2-7
+Removed Pin From Net: NetName=3v3 Pin=U2-8
+Removed Member From Class: ClassName=MainCard Member=U2
+Added Component: Designator=J3(BARRETTE_4_F_D)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "W25L"; VariantName = "[No Variations]"
+Added Component: Designator=J4(BARRETTE_4_F_D)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "W25R"; VariantName = "[No Variations]"
+Added Member To Class: ClassName=MainCard Member=Component J3 BARRETTE_4 CONTACTS_1 RANGEE_FEMELLE_DROITE
+Added Member To Class: ClassName=MainCard Member=Component J4 BARRETTE_4 CONTACTS_1 RANGEE_FEMELLE_DROITE

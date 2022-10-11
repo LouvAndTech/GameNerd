@@ -1,0 +1,42 @@
+Added Component: Designator=R?(RESISTANCE_CMS_0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "CMS_0805"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "1K"; VariantName = "[No Variations]"
+Added Component: Designator=R?(RESISTANCE_CMS_0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "CMS_0805"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "1K"; VariantName = "[No Variations]"
+Added Component: Designator=R?(RESISTANCE_CMS_0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "CMS_0805"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "1K"; VariantName = "[No Variations]"
+Added Component: Designator=R?(RESISTANCE_CMS_0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "CMS_0805"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "1K"; VariantName = "[No Variations]"
+Added Component: Designator=R?(RESISTANCE_CMS_0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "CMS_0805"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "1K"; VariantName = "[No Variations]"
+Added Component: Designator=R?(RESISTANCE_CMS_0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "CMS_0805"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "1K"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=3v3 Pin=R?-1
+Added Pin To Net: NetName=3v3 Pin=R?-1
+Added Pin To Net: NetName=3v3 Pin=R?-1
+Added Pin To Net: NetName=3v3 Pin=R?-1
+Added Pin To Net: NetName=3v3 Pin=R?-1
+Added Pin To Net: NetName=3v3 Pin=R?-1
+Added Pin To Net: NetName=SD_CLK Pin=R?-2
+Added Pin To Net: NetName=SD_CMD Pin=R?-2
+Added Pin To Net: NetName=SD_DAT0 Pin=R?-2
+Added Pin To Net: NetName=SD_DAT1 Pin=R?-2
+Added Pin To Net: NetName=SD_DAT2 Pin=R?-2
+Added Pin To Net: NetName=SD_DAT3 Pin=R?-2
+Added Member To Class: ClassName=MainCard Member=Component R? RESISTANCE_CMS_0805
+Added Member To Class: ClassName=MainCard Member=Component R? RESISTANCE_CMS_0805
+Added Member To Class: ClassName=MainCard Member=Component R? RESISTANCE_CMS_0805
+Added Member To Class: ClassName=MainCard Member=Component R? RESISTANCE_CMS_0805
+Added Member To Class: ClassName=MainCard Member=Component R? RESISTANCE_CMS_0805
+Added Member To Class: ClassName=MainCard Member=Component R? RESISTANCE_CMS_0805
