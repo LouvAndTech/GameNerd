@@ -86,6 +86,18 @@ SECTIONS
     *(.rodata*)        /* .rodata* sections (constants, strings, etc.) */
     . = ALIGN(4);
   } >FLASH
+  
+  /* Section fo the game USERCEATED*/
+  .game :
+  {
+    . = ALIGN(4);
+    _begin_game = . ;
+    *(.game)         /* .rodata sections (constants, strings, etc.) */
+    *(.game*)        /* .rodata* sections (constants, strings, etc.) */
+    _end_game = . ;
+    . = ALIGN(4);
+  } >FLASH
+
 
   .ARM.extab   : {
     . = ALIGN(4);

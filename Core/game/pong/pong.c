@@ -5,68 +5,68 @@
  *      Author: julie
  */
 #include "main.h"
-#include "Controler.h"
 
 #include "../lib/ssd1306.h"
 #include "../lib/ssd1306_tests.h"
+#include "../game/pong/pong.h"
 
-int8_t x = 64;
-int8_t sensx = 2;
-int8_t y = 32;
-int8_t sensy = 1;
-int8_t fill = 0;
-int8_t start = 0;
+typedef struct{
+	int8_t x;
+	int8_t sensx;
+	int8_t y;
+	int8_t sensy;
+	int8_t fill;
+	int8_t start;
+	InputButton buttonStat;
+}ram_pong;
 
-InputButton buttonStats;
 
-void pong(void){
-	getButtonStats(&buttonStats);
-	//InputButton buttonStats = getButtonStats();
-	/*
-	if(x>=128){
-		sensx=-sensx;
-	}else if(x<=10){
-		sensx=-sensx;
-	}
-	if(y>=64){
-		sensy=-sensy;
-	}else if(y<=10){
-		sensy=-sensy;
-	}
-	x+=sensx;
-	y+=sensy;
-	*/
-	if(buttonStats.Start){
-		start = 1;
-	}
-	if(!start){
-		if(buttonStats.Left){
-			x--;
-		}else if(buttonStats.Right){
-			x++;
-		}
-		if(buttonStats.Bottom){
-			y++;
-		}else if(buttonStats.Top){
-			y--;
-		}
-		if(buttonStats.A){
-			fill = 1;
-		}else if(buttonStats.B){
-			fill = 0;
-		}
-		if(buttonStats.Select){
-			x = 64;
-			y = 32;
-		}
+void pong(Program_t *prog){
+	//Init the ram
+	ram_pong *myRam = (ram_pong*) prog->ram;
+	//Init the variable into the ram
+	myRam->x = 64;
+	myRam->y = 32;
+	myRam->fill = 0;
+	myRam->start = 0;
+	myRam->sensx = 2;
+	myRam->sensy = 1;
 
-		if(fill){
-			ssd1306_Fill(Black);
-		}else{
-			ssd1306_Fill(White);
+	while(1){
+		prog->driver->getButtonStats(&myRam->buttonStat);
+		//InputButton buttonStats = getButtonStats();
+		if(myRam->buttonStat.Start){
+			myRam->start = 1;
 		}
-		ssd1306_DrawCircle(x-5, y-5, 5, White);
-		ssd1306_UpdateScreen();
+		if(!myRam->start){
+			if(myRam->buttonStat.Left){
+				myRam->x--;
+			}else if(myRam->buttonStat.Right){
+				myRam->x++;
+			}
+			if(myRam->buttonStat.Bottom){
+				myRam->y++;
+			}else if(myRam->buttonStat.Top){
+				myRam->y--;
+			}
+			if(myRam->buttonStat.A){
+				myRam->fill = 1;
+			}else if(myRam->buttonStat.B){
+				myRam->fill = 0;
+			}
+			if(myRam->buttonStat.Select){
+				myRam->x = 64;
+				myRam->y = 32;
+			}
+
+			if(myRam->fill){
+				prog->driver->ssd1306_Fill(Black);
+			}else{
+				prog->driver->ssd1306_Fill(White);
+			}
+			prog->driver->ssd1306_DrawCircle(myRam->x-5, myRam->y-5, 5, White);
+			prog->driver->ssd1306_UpdateScreen();
+		}
 	}
 }
 

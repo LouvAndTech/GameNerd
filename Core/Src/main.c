@@ -23,12 +23,11 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
-#include "../lib/ssd1306.h"
 #include "../lib/ssd1306_tests.h"
 
 //include game
 #include "../game/pong/pong.h"
+#include "../inc/Controler.h"
 
 /* USER CODE END Includes */
 
@@ -98,20 +97,30 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
 
+  extern uint8_t _begin_game;
+  extern uint8_t _end_game;
 
-
+  volatile uint8_t * pbegin = &_begin_game;
+  volatile uint8_t * pend = &_end_game;
   //Init The screen
   ssd1306_Init();
-  //InputButton input;
-  //button_init();
-
 
   //initialise the program :
   static Program_t myGame;
+  static game_fun_t pGame;
   //Copy the game into the ram
   //Copy(myGAME.code)
   //Update the pointer to the start of the game
-  myGame.pGame = myGame.code[0];
+  //myGame.pGame = myGame.code[0];
+  pGame = & myGame.code[0];
+  uint8_t * pG;
+  pG = (uint8_t *)pGame;
+  uint32_t i = 0;
+  while ((pbegin+i) < pend){
+	  myGame.code[i] = pbegin[i];
+	  i++;
+  }
+
 
   //Init the struct with the drivers
   static Driver_t drivers;
@@ -119,7 +128,7 @@ int main(void)
   myGame.driver = &drivers;
 
   //Start the program :
-  myGame.pGame(&myGame);
+  pGame(&myGame);
 
 
 
@@ -188,10 +197,10 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 
 void init_drivers(Driver_t *d){
-	//WIP d->getButtonStats =
+	d->getButtonStats = &getButtonStats;
 	d->ssd1306_DrawCircle = &ssd1306_DrawCircle;
 	d->ssd1306_DrawRectangle = &ssd1306_DrawRectangle;
-	d->ssd1306_Fill_lib = &ssd1306_Fill;
+	d->ssd1306_Fill = &ssd1306_Fill;
 	d->ssd1306_Line = &ssd1306_Line;
 	d->ssd1306_UpdateScreen = &ssd1306_UpdateScreen;
 }
