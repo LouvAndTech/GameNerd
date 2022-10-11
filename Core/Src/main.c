@@ -35,6 +35,9 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
+
+
+
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -94,7 +97,32 @@ int main(void)
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
 
+
+
+
+  //Init The screen
   ssd1306_Init();
+  //InputButton input;
+  //button_init();
+
+
+  //initialise the program :
+  static Program_t myGame;
+  //Copy the game into the ram
+  //Copy(myGAME.code)
+  //Update the pointer to the start of the game
+  myGame.pGame = myGame.code[0];
+
+  //Init the struct with the drivers
+  static Driver_t drivers;
+  init_drivers(&drivers);
+  myGame.driver = &drivers;
+
+  //Start the program :
+  myGame.pGame(&myGame);
+
+
+
 
   /* USER CODE END 2 */
 
@@ -105,8 +133,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
-	  pong();
+	  //pong();
 
   }
   /* USER CODE END 3 */
@@ -159,6 +186,18 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+void init_drivers(Driver_t *d){
+	//WIP d->getButtonStats =
+	d->ssd1306_DrawCircle = &ssd1306_DrawCircle;
+	d->ssd1306_DrawRectangle = &ssd1306_DrawRectangle;
+	d->ssd1306_Fill_lib = &ssd1306_Fill;
+	d->ssd1306_Line = &ssd1306_Line;
+	d->ssd1306_UpdateScreen = &ssd1306_UpdateScreen;
+}
+
+
+
 
 void readButton(void){
 	static int8_t it = 0;

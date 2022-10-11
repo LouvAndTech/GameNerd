@@ -36,6 +36,10 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
+
+#define SIZE_CODE
+#define SIZE_RAM
+
 typedef struct{
 	int8_t Select;
 	int8_t Top;
@@ -46,6 +50,24 @@ typedef struct{
 	int8_t B;
 	int8_t Bottom;
 }InputButton;
+
+typedef struct{
+	void (*ssd1306_Fill_lib)(SSD1306_COLOR color);
+	void (*ssd1306_UpdateScreen)(void);
+	void (*ssd1306_Line)(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2, SSD1306_COLOR color);
+	void (*ssd1306_DrawCircle)(uint8_t par_x, uint8_t par_y, uint8_t par_r, SSD1306_COLOR color);
+	void (*ssd1306_DrawRectangle)(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2, SSD1306_COLOR color);
+	InputButton (*getButtonStats)(void);
+}Driver_t;
+
+typedef struct{
+		void (*pGame)(*Program_t);
+		uint8_t state;
+		uint8_t code[SIZE_CODE];
+		uint8_t ram[SIZE_RAM];
+		Driver_t *driver;
+}Program_t;
+
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/
