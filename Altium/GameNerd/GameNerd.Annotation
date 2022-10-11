@@ -1,0 +1,24 @@
+[DesignatorManager]
+LogicalDesignator0=W25R
+LogicalPartID0=1
+DocumentName0=MainCard.SchDoc
+ChannelName0=MainCard
+UniqueID0=\LRJEXDOX
+PhysicalDesignator0=J4
+PhysicalDesignatorLocked0=0
+LogicalDesignator1=W25L
+LogicalPartID1=1
+DocumentName1=MainCard.SchDoc
+ChannelName1=MainCard
+UniqueID1=\NEYBBUWC
+PhysicalDesignator1=J3
+PhysicalDesignatorLocked1=0
+
+[SheetNumberManager]
+SheetNumberOrder=Display Order
+SheetNumberMethod=Increasing
+DocumentName0=MainCard.SchDoc
+UniqueIDPath0=
+SheetNumber0=
+
+
