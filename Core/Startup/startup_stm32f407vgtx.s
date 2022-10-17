@@ -45,6 +45,12 @@ defined in linker script */
 .word  _ebss
 /* stack used for SystemInit_ExtMemCtl; always internal RAM used */
 
+.section .game
+.global gameasm
+gameasm:
+	mov r0, #123
+	mov pc, lr
+
 /**
  * @brief  This is the code that gets called when the processor first
  *          starts execution following a reset event. Only the absolutely

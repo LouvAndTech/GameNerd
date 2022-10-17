@@ -105,9 +105,12 @@ int main(void)
   //Init The screen
   ssd1306_Init();
 
+
   //initialise the program :
   static Program_t myGame;
   static game_fun_t pGame;
+
+
   //Copy the game into the ram
   //Copy(myGAME.code)
   //Update the pointer to the start of the game
@@ -129,6 +132,9 @@ int main(void)
 
   //Start the program :
   pGame(&myGame);
+
+  //Make sur the function isn't dump by the compilator
+  pong(&myGame);
 
 
 

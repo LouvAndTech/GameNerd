@@ -64,10 +64,10 @@ typedef struct{
 
 
 typedef struct{
-		uint8_t state;
 		uint8_t code[SIZE_CODE];
 		uint8_t ram[SIZE_RAM];
 		Driver_t *driver;
+		uint8_t state;
 }Program_t;
 
 
