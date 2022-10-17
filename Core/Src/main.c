@@ -114,7 +114,6 @@ int main(void)
 
   //Copy the game into the ram
   //Copy(myGAME.code)
-  pGame = (& myGame.code[0]) + 1;
   uint8_t * pG;
   pG = (uint8_t *)pGame;
   uint32_t i = 0;
@@ -130,6 +129,7 @@ int main(void)
   myGame.driver = &drivers;
 
   //Start the program :
+  pGame = (& myGame.code[0]) + 1;
   pGame(&myGame);
 
   //Make sur the function isn't dump by the compilator
