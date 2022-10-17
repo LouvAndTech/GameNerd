@@ -95,6 +95,7 @@ typedef struct{
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
+void init_drivers(Driver_t *d);
 
 /* USER CODE END EFP */
 

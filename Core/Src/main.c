@@ -104,8 +104,9 @@ int main(void)
   volatile uint8_t * pend = &_end_game;
   //Init The screen
   ssd1306_Init();
-
-
+  /*while(1){
+	  ssd1306_TestCircle();
+  }*/
   //initialise the program :
   static Program_t myGame;
   static game_fun_t pGame;
@@ -113,9 +114,7 @@ int main(void)
 
   //Copy the game into the ram
   //Copy(myGAME.code)
-  //Update the pointer to the start of the game
-  //myGame.pGame = myGame.code[0];
-  pGame = & myGame.code[0];
+  pGame = (& myGame.code[0]) + 1;
   uint8_t * pG;
   pG = (uint8_t *)pGame;
   uint32_t i = 0;
