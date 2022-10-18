@@ -26,7 +26,7 @@
 #include "../lib/ssd1306_tests.h"
 
 //include game
-#include "../game/pong/pong.h"
+#include "../game/realPong/realPong.h"
 #include "../inc/Controler.h"
 
 /* USER CODE END Includes */
@@ -104,13 +104,10 @@ int main(void)
   volatile uint8_t * pend = &_end_game;
   //Init The screen
   ssd1306_Init();
-  /*while(1){
-	  ssd1306_TestCircle();
-  }*/
+
   //initialise the program :
   static Program_t myGame;
   static game_fun_t pGame;
-
 
   //Copy the game into the ram
   //Copy(myGAME.code)
@@ -130,10 +127,10 @@ int main(void)
   myGame.driver = &drivers;
 
   //Start the program :
-  pGame(&myGame);
+  //pGame(&myGame);
 
   //Make sur the function isn't dump by the compilator
-  pong(&myGame);
+  realPong(&myGame);
 
 
 
