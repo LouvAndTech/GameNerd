@@ -17,18 +17,27 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
+#include <ui_menu.h>
 #include "main.h"
 #include "spi.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+
+//include screen lib
 #include "../lib/ssd1306_tests.h"
+
+//include flash lib
 #include "w25qxx.h"
 
 //include game
 #include "../game/pong/pong.h"
 #include "../inc/Controler.h"
+
+//include menu interface
+
+//include menu interface
 
 /* USER CODE END Includes */
 
@@ -106,17 +115,16 @@ int main(void)
 
   W25qxx_Init();
 
+  //Init The screen
+  ssd1306_Init();
+
 
   extern uint8_t _begin_game;
   extern uint8_t _end_game;
 
   volatile uint8_t * pbegin = &_begin_game;
   volatile uint8_t * pend = &_end_game;
-  //Init The screen
-  ssd1306_Init();
-  /*while(1){
-	  ssd1306_TestCircle();
-  }*/
+
   //initialise the program :
   static Program_t myGame;
   static game_fun_t pGame;
@@ -128,15 +136,13 @@ int main(void)
   pG = (uint8_t *)pGame;
   uint32_t i = 0;
 
+  drawMenu();
+
+  while(1){}
+
+  //Load game from flash to ram
   W25qxx_ReadBlock(myGame.code, 0, 0, SIZE_CODE);
 
-  /*
-  while ((pbegin+i) < pend){
-	  myGame.code[i] = pbegin[i];
-
-	  i++;
-  }
-   */
 
   //Init the struct with the drivers
   static Driver_t drivers;
@@ -149,18 +155,6 @@ int main(void)
 
   //Make sur the function isn't dump by the compilator
   pong(&myGame);
-
-
-
-
-  /* --------- differente commande for flash memeorie */
-
-  //W25qxx_ReadBlock(buffer1, 2+(idButton*2)+1, 0, 100);
-
-  //W25qxx_EraseBlock(2+((indexFlash[0])*2)+1);
-  //W25qxx_EraseBlock(2+((indexFlash[0])*2)+2);
-  //W25qxx_WriteBlock(namePass, 2+((indexFlash[0])*2)+1, 0, 21);
-  //W25qxx_WriteBlock(passwordStr, 2+((indexFlash[0])*2)+2, 0, 100);
 
 
   /* USER CODE END 2 */
