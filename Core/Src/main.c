@@ -129,9 +129,12 @@ int main(void)
   uint32_t i = 0;
   while ((pbegin+i) < pend){
 	  myGame.code[i] = pbegin[i];
-
 	  i++;
   }
+
+
+  W25qxx_EraseSector(0);
+  W25qxx_WriteSector(myGame.code[i], 0, 0, SIZE_CODE);
 
 
   //Init the struct with the drivers
