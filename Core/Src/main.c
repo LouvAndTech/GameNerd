@@ -136,12 +136,12 @@ int main(void)
   pG = (uint8_t *)pGame;
   uint32_t i = 0;
 
-  drawMenu();
+  //drawMenu();
 
-  while(1){}
+  //while(1){}
 
   //Load game from flash to ram
-  W25qxx_ReadBlock(myGame.code, 0, 0, SIZE_CODE);
+  W25qxx_ReadSector(myGame.code, 1, 0, SIZE_CODE);
 
 
   //Init the struct with the drivers
