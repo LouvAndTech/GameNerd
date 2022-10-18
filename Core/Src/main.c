@@ -136,14 +136,16 @@ int main(void)
 
 
   W25qxx_EraseSector(0);
-  int8_t* text = "Pong";
-  W25qxx_WriteSector(text, 0, 0, 19);
-  text = "Real Pong";
-  W25qxx_WriteSector(text, 0, 20, 39);
+  int8_t b[1] = {2};
+  W25qxx_WriteSector(b, 0, 0, 1);
+  char text[20] = "Pong";
+  W25qxx_WriteSector(text, 0, 1, 20);
+  char text2[20] = "Real Pong";
+  W25qxx_WriteSector(text2, 0, 21, 40);
 
 
-  W25qxx_EraseSector(2);
-  W25qxx_WriteSector(myGame.code, 2, 0, SIZE_CODE);
+  //W25qxx_EraseSector(2);
+  //W25qxx_WriteSector(myGame.code, 2, 0, SIZE_CODE);
 
   //Init the struct with the drivers
   static Driver_t drivers;
