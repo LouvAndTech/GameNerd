@@ -28,7 +28,8 @@
 
 //include game
 #include "../game/pong/pong.h"
-//#include "../game/realPong/realPong.h"
+#include "../game/realPong/realPong.h"
+
 #include "../inc/Controler.h"
 
 /* USER CODE END Includes */
@@ -135,8 +136,14 @@ int main(void)
 
 
   W25qxx_EraseSector(0);
-  W25qxx_EraseSector(1);
-  W25qxx_WriteSector(myGame.code, 1, 0, SIZE_CODE);
+  int8_t* text = "Pong";
+  W25qxx_WriteSector(text, 0, 0, 19);
+  text = "Real Pong";
+  W25qxx_WriteSector(text, 0, 20, 39);
+
+
+  W25qxx_EraseSector(2);
+  W25qxx_WriteSector(myGame.code, 2, 0, SIZE_CODE);
 
   //Init the struct with the drivers
   static Driver_t drivers;
@@ -148,8 +155,8 @@ int main(void)
   pGame(&myGame);
 
   //Make sur the function isn't dump by the compilator
-  pong(&myGame);
-  //realPong(&myGame);
+  //pong(&myGame);
+  realPong(&myGame);
 
 
 
