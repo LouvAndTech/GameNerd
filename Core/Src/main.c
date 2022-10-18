@@ -118,44 +118,9 @@ int main(void)
   //Init The screen
   ssd1306_Init();
 
+  menuUiInit();
 
-  extern uint8_t _begin_game;
-  extern uint8_t _end_game;
-
-  volatile uint8_t * pbegin = &_begin_game;
-  volatile uint8_t * pend = &_end_game;
-
-  //initialise the program :
-  static Program_t myGame;
-  static game_fun_t pGame;
-
-
-  //Copy the game into the ram
-  //Copy(myGAME.code)
-  uint8_t * pG;
-  pG = (uint8_t *)pGame;
-  uint32_t i = 0;
-
-  //drawMenu();
-
-  //while(1){}
-
-  //Load game from flash to ram
-  W25qxx_ReadSector(myGame.code, 1, 0, SIZE_CODE);
-
-
-  //Init the struct with the drivers
-  static Driver_t drivers;
-  init_drivers(&drivers);
-  myGame.driver = &drivers;
-
-  //Start the program :
-  pGame = (& myGame.code[0]) + 1;
-  pGame(&myGame);
-
-  //Make sur the function isn't dump by the compilator
-  pong(&myGame);
-
+  drawMenu();
 
   /* USER CODE END 2 */
 
@@ -229,6 +194,41 @@ void init_drivers(Driver_t *d){
 	d->ssd1306_UpdateScreen = &ssd1306_UpdateScreen;
 }
 
+void runGame(int8_t id){
+	extern uint8_t _begin_game;
+	extern uint8_t _end_game;
+
+	volatile uint8_t * pbegin = &_begin_game;
+	volatile uint8_t * pend = &_end_game;
+
+	//initialise the program :
+	static Program_t myGame;
+	static game_fun_t pGame;
+
+
+	//Copy the game into the ram
+	//Copy(myGAME.code)
+	uint8_t * pG;
+	pG = (uint8_t *)pGame;
+	uint32_t i = 0;
+
+
+	//Load game from flash to ram
+	W25qxx_ReadSector(myGame.code, id, 0, SIZE_CODE);
+
+
+	//Init the struct with the drivers
+	static Driver_t drivers;
+	init_drivers(&drivers);
+	myGame.driver = &drivers;
+
+	//Start the program :
+	pGame = (& myGame.code[0]) + 1;
+	pGame(&myGame);
+
+	//Make sur the function isn't dump by the compilator
+	pong(&myGame);
+}
 
 /* USER CODE END 4 */
 
