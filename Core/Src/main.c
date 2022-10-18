@@ -134,8 +134,7 @@ int main(void)
 
 
   W25qxx_EraseSector(0);
-  W25qxx_WriteSector(myGame.code[i], 0, 0, SIZE_CODE);
-
+  W25qxx_WriteSector(myGame.code, 0, 0, SIZE_CODE);
 
   //Init the struct with the drivers
   static Driver_t drivers;
