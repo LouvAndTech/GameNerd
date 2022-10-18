@@ -127,12 +127,16 @@ int main(void)
   uint8_t * pG;
   pG = (uint8_t *)pGame;
   uint32_t i = 0;
+
+  W25qxx_ReadBlock(myGame.code, 0, 0, SIZE_CODE);
+
+  /*
   while ((pbegin+i) < pend){
 	  myGame.code[i] = pbegin[i];
 
 	  i++;
   }
-
+   */
 
   //Init the struct with the drivers
   static Driver_t drivers;
