@@ -46,13 +46,15 @@ void drawMenu(){
 			runGame(idGame);
 		}
 		if(ib.Right){
-			if(nbGame > idGame){
+			if(nbGame[0] > idGame){
 				idGame++;
+				loadNameGame(idGame);
 			}
 		}
 		if(ib.Left){
 			if(idGame > 1){
 				idGame--;
+				loadNameGame(idGame);
 			}
 		}
 	}

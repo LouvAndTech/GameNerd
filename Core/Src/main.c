@@ -17,7 +17,6 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
-#include <ui_menu.h>
 #include "main.h"
 #include "spi.h"
 #include "gpio.h"
@@ -118,7 +117,9 @@ int main(void)
   //Init The screen
   ssd1306_Init();
 
-  menuUiInit();
+  ssd1306_TestAll();
+
+  //menuUiInit();
 
   drawMenu();
 
