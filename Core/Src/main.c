@@ -19,11 +19,13 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "spi.h"
+#include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "../lib/ssd1306_tests.h"
+#include "../lib/music.h"
 
 //include game
 #include "../game/realPong/realPong.h"
@@ -81,6 +83,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
+  HAL_Delay(1000);
 
   /* USER CODE END Init */
 
@@ -94,6 +97,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_SPI1_Init();
+  MX_UART4_Init();
   /* USER CODE BEGIN 2 */
 
 
@@ -125,15 +129,7 @@ int main(void)
   static Driver_t drivers;
   init_drivers(&drivers);
   myGame.driver = &drivers;
-
-  //Start the program :
-  //pGame(&myGame);
-
-  //Make sur the function isn't dump by the compilator
-  realPong(&myGame);
-
-
-
+  myGame.state = 0;
 
   /* USER CODE END 2 */
 
@@ -144,7 +140,8 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  //pong();
+	  //Make sur the function isn't dump by the compilator
+	  realPong(&myGame);
 
   }
   /* USER CODE END 3 */
@@ -205,6 +202,9 @@ void init_drivers(Driver_t *d){
 	d->ssd1306_Fill = &ssd1306_Fill;
 	d->ssd1306_Line = &ssd1306_Line;
 	d->ssd1306_UpdateScreen = &ssd1306_UpdateScreen;
+	d->MUSIC_PlayMusic = &MUSIC_PlayMusic;
+	d->MUSIC_PlaySound = &MUSIC_PlaySound;
+	d->MUSIC_Stop = &MUSIC_Stop;
 }
 
 
