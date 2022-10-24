@@ -1,0 +1,19 @@
+Added Component: Designator=C6(CONDENSATEUR_CMS_1206)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "CMS_1206"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "100nF"; VariantName = "[No Variations]"
+Added Component: Designator=J2(BARRETTE_8_F_D)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "F_D_8"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=3v3 Pin=C6-1
+Added Pin To Net: NetName=GND Pin=C6-2
+Added Pin To Net: NetName=GND Pin=J2-1
+Added Pin To Net: NetName=3v3 Pin=J2-2
+Added Pin To Net: NetName=SCL Pin=J2-3
+Added Pin To Net: NetName=SDA Pin=J2-4
+Added Pin To Net: NetName=RES Pin=J2-5
+Added Pin To Net: NetName=DC Pin=J2-6
+Added Pin To Net: NetName=CS Pin=J2-7
+Added Member To Class: ClassName=MainCard Member=Component * OLED_20704
+Added Member To Class: ClassName=MainCard Member=Component C6 CMS_1206
+Added Member To Class: ClassName=MainCard Member=Component J2 BARRETTE_8 CONTACTS_1 RANGEE_FEMELLE_DROITE

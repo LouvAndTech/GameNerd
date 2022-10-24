@@ -1,0 +1,41 @@
+Removed Pin From Net: NetName=GND Pin=C5-1
+Removed Pin From Net: NetName=3v3 Pin=C5-2
+Removed Pin From Net: NetName=SD_DAT3 Pin=J1-1
+Removed Pin From Net: NetName=SD_CMD Pin=J1-2
+Removed Pin From Net: NetName=GND Pin=J1-3
+Removed Pin From Net: NetName=3v3 Pin=J1-4
+Removed Pin From Net: NetName=SD_CLK Pin=J1-5
+Removed Pin From Net: NetName=GND Pin=J1-6
+Removed Pin From Net: NetName=SD_DAT0 Pin=J1-7
+Removed Pin From Net: NetName=SD_DAT1 Pin=J1-8
+Removed Pin From Net: NetName=SD_DAT2 Pin=J1-9
+Removed Pin From Net: NetName=GND Pin=J1-Shield
+Removed Pin From Net: NetName=GND Pin=J1-Shield
+Removed Pin From Net: NetName=GND Pin=J1-Shield
+Removed Pin From Net: NetName=GND Pin=J1-Shield
+Removed Pin From Net: NetName=DC Pin=KD1-7
+Removed Pin From Net: NetName=CS Pin=KD1-8
+Removed Pin From Net: NetName=SCL Pin=KD1-15
+Removed Pin From Net: NetName=SDA Pin=KD1-17
+Removed Pin From Net: NetName=RES Pin=KD1-22
+Removed Pin From Net: NetName=BTN_B Pin=KD1-61
+Removed Pin From Net: NetName=BTN_DOWN Pin=KD1-62
+Removed Pin From Net: NetName=BTN_A Pin=KD1-63
+Removed Pin From Net: NetName=BTN_LEFT Pin=KD1-64
+Removed Pin From Net: NetName=BTN_START Pin=KD1-65
+Removed Pin From Net: NetName=BTN_RIGHT Pin=KD1-66
+Removed Pin From Net: NetName=BTN_SELECT Pin=KD1-67
+Removed Pin From Net: NetName=BTN_TOP Pin=KD1-68
+Removed Pin From Net: NetName=3v3 Pin=R?-1
+Removed Pin From Net: NetName=SD_CMD Pin=R?-2
+Removed Member From Class: ClassName=MainCard Member=C5
+Removed Member From Class: ClassName=MainCard Member=J1
+Removed Member From Class: ClassName=MainCard Member=R?
+Added Component: Designator=*(BTN_R200_1)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=CS Pin=KD1-68
+Added Pin To Net: NetName=DC Pin=KD1-70
+Added Pin To Net: NetName=RES Pin=KD1-74
+Added Pin To Net: NetName=SDA Pin=KD1-76
+Added Pin To Net: NetName=SCL Pin=KD1-78
+Added Member To Class: ClassName=MainCard Member=Component * BTN_R200_1

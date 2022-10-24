@@ -1,0 +1,7 @@
+Added Component: Designator=*(BTN_R200_1)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=GND Pin=*-1
+Added Pin To Net: NetName=GND Pin=*-1
+Added Pin To Net: NetName=5v Pin=*-2
+Added Pin To Net: NetName=5v Pin=*-2
+Added Member To Class: ClassName=MainCard Member=Component * BTN_R200_1

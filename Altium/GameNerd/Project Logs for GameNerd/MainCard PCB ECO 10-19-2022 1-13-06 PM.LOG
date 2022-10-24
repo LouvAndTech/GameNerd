@@ -1,0 +1,38 @@
+Removed Pin From Net: NetName=3v Pin=*1-2
+Removed Pin From Net: NetName=3v Pin=*1-2
+Removed Pin From Net: NetName=3v Pin=*2-2
+Removed Pin From Net: NetName=3v Pin=*2-2
+Removed Pin From Net: NetName=3v Pin=*3-2
+Removed Pin From Net: NetName=3v Pin=*3-2
+Removed Pin From Net: NetName=3v Pin=*4-2
+Removed Pin From Net: NetName=3v Pin=*4-2
+Removed Pin From Net: NetName=3v Pin=*5-2
+Removed Pin From Net: NetName=3v Pin=*5-2
+Removed Pin From Net: NetName=3v Pin=*6-2
+Removed Pin From Net: NetName=3v Pin=*6-2
+Removed Pin From Net: NetName=3v Pin=*7-2
+Removed Pin From Net: NetName=3v Pin=*7-2
+Removed Pin From Net: NetName=3v Pin=*-2
+Removed Pin From Net: NetName=3v Pin=*-2
+Added Component: Designator=J1(BARRETTE_4_M_D)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "M_D_4"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=3v3 Pin=*1-2
+Added Pin To Net: NetName=3v3 Pin=*1-2
+Added Pin To Net: NetName=3v3 Pin=*2-2
+Added Pin To Net: NetName=3v3 Pin=*2-2
+Added Pin To Net: NetName=3v3 Pin=*3-2
+Added Pin To Net: NetName=3v3 Pin=*3-2
+Added Pin To Net: NetName=3v3 Pin=*4-2
+Added Pin To Net: NetName=3v3 Pin=*4-2
+Added Pin To Net: NetName=3v3 Pin=*5-2
+Added Pin To Net: NetName=3v3 Pin=*5-2
+Added Pin To Net: NetName=3v3 Pin=*6-2
+Added Pin To Net: NetName=3v3 Pin=*6-2
+Added Pin To Net: NetName=3v3 Pin=*7-2
+Added Pin To Net: NetName=3v3 Pin=*7-2
+Added Pin To Net: NetName=3v3 Pin=*-2
+Added Pin To Net: NetName=3v3 Pin=*-2
+Added Member To Class: ClassName=MainCard Member=Component * BTN_A
+Added Member To Class: ClassName=MainCard Member=Component * OLED_20704
+Added Member To Class: ClassName=MainCard Member=Component J1 BARRETTE_4 CONTACTS_1 RANGEE_MALE_DROITE

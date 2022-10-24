@@ -1,0 +1,270 @@
+Added Component: Designator=*1(BTN_R200_1)
+Add component. Clean all parameters for all variants
+Added Component: Designator=*2(BTN_R200_1)
+Add component. Clean all parameters for all variants
+Added Component: Designator=*3(BTN_R200_1)
+Add component. Clean all parameters for all variants
+Added Component: Designator=*4(BTN_R200_1)
+Add component. Clean all parameters for all variants
+Added Component: Designator=*5(BTN_R200_1)
+Add component. Clean all parameters for all variants
+Added Component: Designator=*6(BTN_R200_1)
+Add component. Clean all parameters for all variants
+Added Component: Designator=*7(BTN_R200_1)
+Add component. Clean all parameters for all variants
+Added Component: Designator=*(OLED_20704)
+Add component. Clean all parameters for all variants
+Added Component: Designator=*(calatex mp3)
+Add component. Clean all parameters for all variants
+Added Component: Designator=*(BTN_R200_1)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C1(CONDENSATEUR_CMS_0603)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Condo"; Value = "0.47µF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Type"; Value = "CMS_0603"; VariantName = "[No Variations]"
+Added Component: Designator=C2(CONDENSATEUR_CMS_0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "CMS_0805"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "10µF"; VariantName = "[No Variations]"
+Added Component: Designator=C3(CONDENSATEUR_CMS_0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "CMS_0805"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "33µF"; VariantName = "[No Variations]"
+Added Component: Designator=C4(CONDENSATEUR_CMS_1206)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "CMS_1206"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "100nF"; VariantName = "[No Variations]"
+Added Component: Designator=C5(CONDENSATEUR_CMS_1206)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "CMS_1206"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "100nF"; VariantName = "[No Variations]"
+Added Component: Designator=J1(BARRETTE_4_M_D)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "M_D_4"; VariantName = "[No Variations]"
+Added Component: Designator=J2(BARRETTE_4_M_D)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "UART"; VariantName = "[No Variations]"
+Added Component: Designator=J3(BARRETTE_4_F_D)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "W25L"; VariantName = "[No Variations]"
+Added Component: Designator=J4(BARRETTE_4_F_D)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "W25R"; VariantName = "[No Variations]"
+Added Component: Designator=KD1(STM32F4DISCOVERY)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "KIT DE DEVELOPPEMENT"; VariantName = "[No Variations]"
+Added Component: Designator=R1(RESISTANCE_CMS_0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "CMS_0805"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "10K"; VariantName = "[No Variations]"
+Added Component: Designator=R2(RESISTANCE_CMS_0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "CMS_0805"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "10K"; VariantName = "[No Variations]"
+Added Component: Designator=R3(RESISTANCE_CMS_0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "CMS_0805"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "10K"; VariantName = "[No Variations]"
+Added Component: Designator=R4(RESISTANCE_CMS_0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "CMS_0805"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "10K"; VariantName = "[No Variations]"
+Added Component: Designator=R5(RESISTANCE_CMS_0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "CMS_0805"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "10K"; VariantName = "[No Variations]"
+Added Component: Designator=R6(RESISTANCE_CMS_0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "CMS_0805"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "10K"; VariantName = "[No Variations]"
+Added Component: Designator=R7(RESISTANCE_CMS_0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "CMS_0805"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "10K"; VariantName = "[No Variations]"
+Added Component: Designator=R8(RESISTANCE_CMS_0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "CMS_0805"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "10K"; VariantName = "[No Variations]"
+Added Component: Designator=U1(FP-DCY0004A-IPC_C)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Case/Package"; Value = "SOT-223"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Contact Plating"; Value = "Tin"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Current Rating"; Value = "1A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Dropout Voltage"; Value = "500mV"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Height"; Value = "1.6mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Lead Free"; Value = "Lead Free"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Length"; Value = "6.5mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Max Input Voltage"; Value = "7.5V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Max Operating Temperature"; Value = "125°C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Max Output Current"; Value = "1A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Max Output Voltage"; Value = "3.3V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Max Supply Voltage"; Value = "7.5V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Min Input Voltage"; Value = "4.5V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Min Operating Temperature"; Value = "-40°C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Min Supply Voltage"; Value = "4.5V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mount"; Value = "Surface Mount"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Nominal Output Voltage"; Value = "3.3V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Number of Outputs"; Value = "1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Number of Pins"; Value = "4"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Number of Regulators"; Value = "1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Output Configuration"; Value = "Positive"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Output Current"; Value = "1A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Output Type"; Value = "Fixed"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Output Voltage"; Value = "3.3V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package Quantity"; Value = "1000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Packaging"; Value = "Tape and Reel"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Polarity"; Value = "Positive"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Quiescent Current"; Value = "15mA"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Radiation Hardening"; Value = "No"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "REACH SVHC"; Value = "No SVHC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Series"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Termination"; Value = "SMD/SMT"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Width"; Value = "3.56mm"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=BTN_B Pin=*1-1
+Added Pin To Net: NetName=BTN_B Pin=*1-1
+Added Pin To Net: NetName=3v Pin=*1-2
+Added Pin To Net: NetName=3v Pin=*1-2
+Added Pin To Net: NetName=BTN_TOP Pin=*2-1
+Added Pin To Net: NetName=BTN_TOP Pin=*2-1
+Added Pin To Net: NetName=3v Pin=*2-2
+Added Pin To Net: NetName=3v Pin=*2-2
+Added Pin To Net: NetName=BTN_DOWN Pin=*3-1
+Added Pin To Net: NetName=BTN_DOWN Pin=*3-1
+Added Pin To Net: NetName=3v Pin=*3-2
+Added Pin To Net: NetName=3v Pin=*3-2
+Added Pin To Net: NetName=BTN_LEFT Pin=*4-1
+Added Pin To Net: NetName=BTN_LEFT Pin=*4-1
+Added Pin To Net: NetName=3v Pin=*4-2
+Added Pin To Net: NetName=3v Pin=*4-2
+Added Pin To Net: NetName=BTN_RIGHT Pin=*5-1
+Added Pin To Net: NetName=BTN_RIGHT Pin=*5-1
+Added Pin To Net: NetName=3v Pin=*5-2
+Added Pin To Net: NetName=3v Pin=*5-2
+Added Pin To Net: NetName=BTN_START Pin=*6-1
+Added Pin To Net: NetName=BTN_START Pin=*6-1
+Added Pin To Net: NetName=3v Pin=*6-2
+Added Pin To Net: NetName=3v Pin=*6-2
+Added Pin To Net: NetName=BTN_SELECT Pin=*7-1
+Added Pin To Net: NetName=BTN_SELECT Pin=*7-1
+Added Pin To Net: NetName=3v Pin=*7-2
+Added Pin To Net: NetName=3v Pin=*7-2
+Added Pin To Net: NetName=BTN_A Pin=*-1
+Added Pin To Net: NetName=BTN_A Pin=*-1
+Added Pin To Net: NetName=GND Pin=*-1
+Added Pin To Net: NetName=3v3 Pin=*-2
+Added Pin To Net: NetName=3v Pin=*-2
+Added Pin To Net: NetName=3v Pin=*-2
+Added Pin To Net: NetName=5v Pin=*-3
+Added Pin To Net: NetName=SCL Pin=*-3
+Added Pin To Net: NetName=GND Pin=*-4
+Added Pin To Net: NetName=SDA Pin=*-4
+Added Pin To Net: NetName=RES Pin=*-5
+Added Pin To Net: NetName=DC Pin=*-6
+Added Pin To Net: NetName=CS Pin=*-7
+Added Pin To Net: NetName=GND Pin=C1-1
+Added Pin To Net: NetName=5v Pin=C1-2
+Added Pin To Net: NetName=GND Pin=C2-1
+Added Pin To Net: NetName=5v Pin=C2-2
+Added Pin To Net: NetName=GND Pin=C3-1
+Added Pin To Net: NetName=3v3 Pin=C3-2
+Added Pin To Net: NetName=GND Pin=C4-1
+Added Pin To Net: NetName=3v3 Pin=C4-2
+Added Pin To Net: NetName=3v3 Pin=C5-1
+Added Pin To Net: NetName=GND Pin=C5-2
+Added Pin To Net: NetName=5v Pin=J2-3
+Added Pin To Net: NetName=GND Pin=J2-4
+Added Pin To Net: NetName=CS_2 Pin=J3-1
+Added Pin To Net: NetName=MISO_2 Pin=J3-2
+Added Pin To Net: NetName=3v3 Pin=J3-3
+Added Pin To Net: NetName=GND Pin=J3-4
+Added Pin To Net: NetName=MOSI_2 Pin=J4-1
+Added Pin To Net: NetName=SCLK_2 Pin=J4-2
+Added Pin To Net: NetName=3v3 Pin=J4-3
+Added Pin To Net: NetName=3v3 Pin=J4-4
+Added Pin To Net: NetName=GND Pin=KD1-1
+Added Pin To Net: NetName=GND Pin=KD1-2
+Added Pin To Net: NetName=MOSI_2 Pin=KD1-9
+Added Pin To Net: NetName=MISO_2 Pin=KD1-10
+Added Pin To Net: NetName=CS_2 Pin=KD1-33
+Added Pin To Net: NetName=SCLK_2 Pin=KD1-34
+Added Pin To Net: NetName=BTN_SELECT Pin=KD1-44
+Added Pin To Net: NetName=BTN_A Pin=KD1-45
+Added Pin To Net: NetName=BTN_START Pin=KD1-46
+Added Pin To Net: NetName=BTN_B Pin=KD1-47
+Added Pin To Net: NetName=GND Pin=KD1-49
+Added Pin To Net: NetName=GND Pin=KD1-50
+Added Pin To Net: NetName=GND Pin=KD1-51
+Added Pin To Net: NetName=GND Pin=KD1-52
+Added Pin To Net: NetName=5v Pin=KD1-53
+Added Pin To Net: NetName=3v Pin=KD1-55
+Added Pin To Net: NetName=CS Pin=KD1-68
+Added Pin To Net: NetName=DC Pin=KD1-70
+Added Pin To Net: NetName=RES Pin=KD1-74
+Added Pin To Net: NetName=SDA Pin=KD1-76
+Added Pin To Net: NetName=SCL Pin=KD1-78
+Added Pin To Net: NetName=BTN_TOP Pin=KD1-90
+Added Pin To Net: NetName=BTN_RIGHT Pin=KD1-94
+Added Pin To Net: NetName=BTN_DOWN Pin=KD1-96
+Added Pin To Net: NetName=BTN_LEFT Pin=KD1-98
+Added Pin To Net: NetName=GND Pin=KD1-99
+Added Pin To Net: NetName=GND Pin=KD1-100
+Added Pin To Net: NetName=GND Pin=R1-1
+Added Pin To Net: NetName=BTN_A Pin=R1-2
+Added Pin To Net: NetName=GND Pin=R2-1
+Added Pin To Net: NetName=BTN_B Pin=R2-2
+Added Pin To Net: NetName=GND Pin=R3-1
+Added Pin To Net: NetName=BTN_TOP Pin=R3-2
+Added Pin To Net: NetName=GND Pin=R4-1
+Added Pin To Net: NetName=BTN_DOWN Pin=R4-2
+Added Pin To Net: NetName=GND Pin=R5-1
+Added Pin To Net: NetName=BTN_LEFT Pin=R5-2
+Added Pin To Net: NetName=GND Pin=R6-1
+Added Pin To Net: NetName=BTN_RIGHT Pin=R6-2
+Added Pin To Net: NetName=GND Pin=R7-1
+Added Pin To Net: NetName=BTN_START Pin=R7-2
+Added Pin To Net: NetName=GND Pin=R8-1
+Added Pin To Net: NetName=BTN_SELECT Pin=R8-2
+Added Pin To Net: NetName=5v Pin=U1-1
+Added Pin To Net: NetName=GND Pin=U1-2
+Added Pin To Net: NetName=3v3 Pin=U1-3
+Added Pin To Net: NetName=GND Pin=U1-4
+Added Pin To Net: NetName=MP3_RX Pin=*-1
+Added Pin To Net: NetName=MP3_RX Pin=KD1-12
+Added Net: Name=MP3_RX
+Added Pin To Net: NetName=MP3_TX Pin=*-2
+Added Pin To Net: NetName=MP3_TX Pin=KD1-11
+Added Net: Name=MP3_TX
+Added Pin To Net: NetName=UA_RX Pin=J2-2
+Added Net: Name=UA_RX
+Added Pin To Net: NetName=UA_TX Pin=J2-1
+Added Net: Name=UA_TX
+Added Member To Class: ClassName=MainCard Member=Component *1 BTN_B
+Added Member To Class: ClassName=MainCard Member=Component *2 BTN_TOP
+Added Member To Class: ClassName=MainCard Member=Component *3 BTN_DOWN
+Added Member To Class: ClassName=MainCard Member=Component *4 BTN_LEFT
+Added Member To Class: ClassName=MainCard Member=Component *5 BTN_RIGHT
+Added Member To Class: ClassName=MainCard Member=Component *6 BTN_START
+Added Member To Class: ClassName=MainCard Member=Component *7 BTN_SELECT
+Added Member To Class: ClassName=MainCard Member=Component * OLED_20704
+Added Member To Class: ClassName=MainCard Member=Component * calatex_mp3
+Added Member To Class: ClassName=MainCard Member=Component * BTN_A
+Added Member To Class: ClassName=MainCard Member=Component C1 CMS_0603
+Added Member To Class: ClassName=MainCard Member=Component C2 CMS_0805
+Added Member To Class: ClassName=MainCard Member=Component C3 CMS_0805
+Added Member To Class: ClassName=MainCard Member=Component C4 CMS_1206
+Added Member To Class: ClassName=MainCard Member=Component C5 CMS_1206
+Added Member To Class: ClassName=MainCard Member=Component J1 BARRETTE_4 CONTACTS_1 RANGEE_MALE_DROITE
+Added Member To Class: ClassName=MainCard Member=Component J2 BARRETTE_4 CONTACTS_1 RANGEE_MALE_DROITE
+Added Member To Class: ClassName=MainCard Member=Component J3 (W25L) BARRETTE_4 CONTACTS_1 RANGEE_FEMELLE_DROITE
+Added Member To Class: ClassName=MainCard Member=Component J4 (W25R) BARRETTE_4 CONTACTS_1 RANGEE_FEMELLE_DROITE
+Added Member To Class: ClassName=MainCard Member=Component KD1 STM32F4DISCOVERY
+Added Member To Class: ClassName=MainCard Member=Component R1 RESISTANCE_CMS_0805
+Added Member To Class: ClassName=MainCard Member=Component R2 RESISTANCE_CMS_0805
+Added Member To Class: ClassName=MainCard Member=Component R3 RESISTANCE_CMS_0805
+Added Member To Class: ClassName=MainCard Member=Component R4 RESISTANCE_CMS_0805
+Added Member To Class: ClassName=MainCard Member=Component R5 RESISTANCE_CMS_0805
+Added Member To Class: ClassName=MainCard Member=Component R6 RESISTANCE_CMS_0805
+Added Member To Class: ClassName=MainCard Member=Component R7 RESISTANCE_CMS_0805
+Added Member To Class: ClassName=MainCard Member=Component R8 RESISTANCE_CMS_0805
+Added Member To Class: ClassName=MainCard Member=Component U1 LM3940IMP-3.3/NOPB
+Added Room: Name=MainCard

@@ -1,0 +1,22 @@
+Removed Pin From Net: NetName=3v3 Pin=C6-1
+Removed Pin From Net: NetName=GND Pin=C6-2
+Removed Pin From Net: NetName=GND Pin=J2-1
+Removed Pin From Net: NetName=3v3 Pin=J2-2
+Removed Pin From Net: NetName=SCL Pin=J2-3
+Removed Pin From Net: NetName=SDA Pin=J2-4
+Removed Pin From Net: NetName=RES Pin=J2-5
+Removed Pin From Net: NetName=DC Pin=J2-6
+Removed Pin From Net: NetName=CS Pin=J2-7
+Removed Member From Class: ClassName=MainCard Member=C6
+Removed Member From Class: ClassName=MainCard Member=J2
+Added Component: Designator=*(OLED_20704)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=GND Pin=*-1
+Added Pin To Net: NetName=3v3 Pin=*-2
+Added Pin To Net: NetName=SCL Pin=*-3
+Added Pin To Net: NetName=SDA Pin=*-4
+Added Pin To Net: NetName=RES Pin=*-5
+Added Pin To Net: NetName=DC Pin=*-6
+Added Pin To Net: NetName=CS Pin=*-7
+Added Member To Class: ClassName=MainCard Member=Component * BTN_R200_1
+Added Member To Class: ClassName=MainCard Member=Component * OLED_20704

@@ -1,0 +1,4 @@
+Added Component: Designator=*(OLED_20704)
+Add component. Clean all parameters for all variants
+Added Member To Class: ClassName=MainCard Member=Component * BTN_R200_1
+Added Member To Class: ClassName=MainCard Member=Component * OLED_20704

@@ -1,0 +1,7 @@
+Removed Pin From Net: NetName=GND Pin=*-1
+Removed Pin From Net: NetName=GND Pin=*-1
+Removed Pin From Net: NetName=5v Pin=*-2
+Removed Pin From Net: NetName=5v Pin=*-2
+Added Component: Designator=*(OLED_20704)
+Add component. Clean all parameters for all variants
+Added Member To Class: ClassName=MainCard Member=Component * OLED_20704
