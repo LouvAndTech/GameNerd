@@ -26,12 +26,12 @@
 
 // SPI Configuration
 #define SSD1306_SPI_PORT        hspi1
-#define SSD1306_CS_Port         GPIOC
-#define SSD1306_CS_Pin          GPIO_PIN_0
-#define SSD1306_DC_Port         GPIOC
-#define SSD1306_DC_Pin          GPIO_PIN_1
+#define SSD1306_CS_Port         GPIOE
+#define SSD1306_CS_Pin          GPIO_PIN_1
+#define SSD1306_DC_Port         GPIOB
+#define SSD1306_DC_Pin          GPIO_PIN_9
 #define SSD1306_Reset_Port      GPIOB
-#define SSD1306_Reset_Pin       GPIO_PIN_0
+#define SSD1306_Reset_Pin       GPIO_PIN_7
 
 // Mirror the screen if needed
 // #define SSD1306_MIRROR_VERT

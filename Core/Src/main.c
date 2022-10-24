@@ -24,12 +24,21 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+
+//include screen lib
 #include "../lib/ssd1306_tests.h"
 #include "../lib/music.h"
+
+//include flash lib
+#include "w25qxx.h"
 
 //include game
 #include "../game/realPong/realPong.h"
 #include "../inc/Controler.h"
+
+//include menu interface
+
+//include menu interface
 
 /* USER CODE END Includes */
 
@@ -65,6 +74,16 @@ void SystemClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+/*
+int8_t buttonStats[] = {0,0,0,0,0,0,0,0};
+
+uint8_t indexFlash[1] = {0};
+uint8_t buffer1[20];
+uint8_t buffer2[100] = {0};
+*/
+uint8_t step = INIT;
+uint8_t idGame = 0;
+
 /* USER CODE END 0 */
 
 /**
@@ -98,14 +117,11 @@ int main(void)
   MX_GPIO_Init();
   MX_SPI1_Init();
   MX_UART4_Init();
+  MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
 
+  W25qxx_Init();
 
-  extern uint8_t _begin_game;
-  extern uint8_t _end_game;
-
-  volatile uint8_t * pbegin = &_begin_game;
-  volatile uint8_t * pend = &_end_game;
   //Init The screen
   ssd1306_Init();
 
@@ -138,11 +154,25 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+	  switch(step){
+		  case INIT:
+			  step = MENU;
+			  break;
+		  case MENU:
+			  //menuUiInit();
+			  drawMenu();
+			  break;
+		  case GAME:
+			  runGame(idGame);
+			  break;
+		  case BACKGROUND:
+
+			  break;
+	  }
 
     /* USER CODE BEGIN 3 */
-	  //Make sur the function isn't dump by the compilator
-	  realPong(&myGame);
 
+	  //pong();
   }
   /* USER CODE END 3 */
 }
@@ -207,6 +237,48 @@ void init_drivers(Driver_t *d){
 	d->MUSIC_Stop = &MUSIC_Stop;
 }
 
+void runGame(){
+	extern uint8_t _begin_game;
+	extern uint8_t _end_game;
+
+	volatile uint8_t * pbegin = &_begin_game;
+	volatile uint8_t * pend = &_end_game;
+
+	//initialise the program :
+	static Program_t myGame;
+	static game_fun_t pGame;
+
+
+	//Copy the game into the ram
+	//Copy(myGAME.code)
+	uint8_t * pG;
+	pG = (uint8_t *)pGame;
+	uint32_t i = 0;
+
+
+	//Load game from flash to ram
+	W25qxx_ReadSector(myGame.code, idGame, 0, SIZE_CODE);
+
+
+	//Init the struct with the drivers
+	static Driver_t drivers;
+	init_drivers(&drivers);
+	myGame.driver = &drivers;
+
+	//Start the program :
+	pGame = (& myGame.code[0]) + 1;
+	pGame(&myGame);
+
+	//Make sur the function isn't dump by the compilator
+	pong(&myGame);
+}
+
+void setStep(uint8_t newStep){
+	step = newStep;
+}
+void setIdGame(uint8_t newID){
+	idGame = newID;
+}
 
 /* USER CODE END 4 */
 

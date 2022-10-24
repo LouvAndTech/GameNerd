@@ -64,28 +64,30 @@ void init_drivers(Driver_t *d);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define btn_Start_Pin GPIO_PIN_2
-#define btn_Start_GPIO_Port GPIOE
-#define btn_Right_Pin GPIO_PIN_3
-#define btn_Right_GPIO_Port GPIOE
-#define btn_A_Pin GPIO_PIN_4
-#define btn_A_GPIO_Port GPIOE
-#define btn_Left_Pin GPIO_PIN_5
-#define btn_Left_GPIO_Port GPIOE
-#define btn_B_Pin GPIO_PIN_6
-#define btn_B_GPIO_Port GPIOE
-#define btn_Bottom_Pin GPIO_PIN_13
+#define Flash_CS_Pin GPIO_PIN_15
+#define Flash_CS_GPIO_Port GPIOE
+#define btn_Select_Pin GPIO_PIN_12
+#define btn_Select_GPIO_Port GPIOD
+#define btn_A_Pin GPIO_PIN_13
+#define btn_A_GPIO_Port GPIOD
+#define btn_Start_Pin GPIO_PIN_14
+#define btn_Start_GPIO_Port GPIOD
+#define btn_B_Pin GPIO_PIN_15
+#define btn_B_GPIO_Port GPIOD
+#define btn_Left_Pin GPIO_PIN_7
+#define btn_Left_GPIO_Port GPIOC
+#define btn_Bottom_Pin GPIO_PIN_9
 #define btn_Bottom_GPIO_Port GPIOC
-#define OLED_CS_Pin GPIO_PIN_0
-#define OLED_CS_GPIO_Port GPIOC
-#define OLED_DC_Pin GPIO_PIN_1
-#define OLED_DC_GPIO_Port GPIOC
-#define OLED_Res_Pin GPIO_PIN_0
+#define btn_Right_Pin GPIO_PIN_9
+#define btn_Right_GPIO_Port GPIOA
+#define btn_Top_Pin GPIO_PIN_15
+#define btn_Top_GPIO_Port GPIOA
+#define OLED_Res_Pin GPIO_PIN_7
 #define OLED_Res_GPIO_Port GPIOB
-#define btn_Select_Pin GPIO_PIN_0
-#define btn_Select_GPIO_Port GPIOE
-#define btn_Top_Pin GPIO_PIN_1
-#define btn_Top_GPIO_Port GPIOE
+#define OLED_DC_Pin GPIO_PIN_9
+#define OLED_DC_GPIO_Port GPIOB
+#define OLED_CS_Pin GPIO_PIN_1
+#define OLED_CS_GPIO_Port GPIOE
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
