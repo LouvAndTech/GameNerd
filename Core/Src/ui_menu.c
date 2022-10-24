@@ -13,23 +13,22 @@
 
 
 uint8_t getMiddle(int8_t max, char* str);
-uint8_t idGame = 1;
+uint8_t idG = 1;
 uint8_t nbGame[1] = {0};
 uint8_t onAnim = 0;
 InputButton ib;
 char gameName[20] = {0};
 
 void menuUiInit(){
+	/*
 	W25qxx_ReadSector(nbGame, 0, 0, 1);
 	if(nbGame[0] > 0){
-		loadNameGame(idGame);
+		loadNameGame(idG);
 	}
-}
+	*/
+	ssd1306_Fill(Black);
 
-void drawMenu(){
-    ssd1306_Fill(Black);
-
-    ssd1306_SetCursor(32,0); //32 getMiddle(128, "Game Nerd")
+	ssd1306_SetCursor(32,0); //32 getMiddle(128, "Game Nerd")
 	ssd1306_WriteString("Game Nerd", Font_7x10, White);
 
 	drawBox(24, 16, "Load Game");
@@ -39,23 +38,25 @@ void drawMenu(){
 		ssd1306_DrawTriangle(13, 35, 8, 40, 13, 45, White);
 	}
 	ssd1306_UpdateScreen();
+}
 
-	while(1){
-		getButtonStats(&ib);
-		if(ib.A){
-			runGame(idGame);
+void drawMenu(){
+	menuUiInit();
+	getButtonStats(&ib);
+	if(ib.A){
+		setStep(GAME);
+		setIdGame(idG);
+	}
+	if(ib.Right){
+		if(nbGame[0] > idG){
+			idG++;
+			loadNameGame(idG);
 		}
-		if(ib.Right){
-			if(nbGame[0] > idGame){
-				idGame++;
-				loadNameGame(idGame);
-			}
-		}
-		if(ib.Left){
-			if(idGame > 1){
-				idGame--;
-				loadNameGame(idGame);
-			}
+	}
+	if(ib.Left){
+		if(idG > 1){
+			idG--;
+			loadNameGame(idG);
 		}
 	}
 }

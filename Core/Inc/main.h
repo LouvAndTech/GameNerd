@@ -61,6 +61,13 @@ typedef struct{
 	void (*getButtonStats)(InputButton *btn);
 }Driver_t;
 
+typedef enum{
+	INIT=0,
+	MENU,
+	GAME,
+	BACKGROUND
+}stepMenu;
+
 
 
 typedef struct{
@@ -72,6 +79,8 @@ typedef struct{
 
 
 typedef void(*game_fun_t)(Program_t *prog); //Type pointeur sur fonction
+void setStep(uint8_t newStep);
+void setIdGame(uint8_t newID);
 
 typedef struct{
 	Program_t prog;

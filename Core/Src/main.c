@@ -72,11 +72,15 @@ void SystemClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+/*
 int8_t buttonStats[] = {0,0,0,0,0,0,0,0};
 
 uint8_t indexFlash[1] = {0};
 uint8_t buffer1[20];
 uint8_t buffer2[100] = {0};
+*/
+uint8_t step = INIT;
+uint8_t idGame = 0;
 
 /* USER CODE END 0 */
 
@@ -117,12 +121,6 @@ int main(void)
   //Init The screen
   ssd1306_Init();
 
-  ssd1306_TestAll();
-
-  //menuUiInit();
-
-  drawMenu();
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -130,6 +128,21 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+	  switch(step){
+		  case INIT:
+			  step = MENU;
+			  break;
+		  case MENU:
+			  //menuUiInit();
+			  drawMenu();
+			  break;
+		  case GAME:
+			  runGame(idGame);
+			  break;
+		  case BACKGROUND:
+
+			  break;
+	  }
 
     /* USER CODE BEGIN 3 */
 
@@ -195,7 +208,7 @@ void init_drivers(Driver_t *d){
 	d->ssd1306_UpdateScreen = &ssd1306_UpdateScreen;
 }
 
-void runGame(int8_t id){
+void runGame(){
 	extern uint8_t _begin_game;
 	extern uint8_t _end_game;
 
@@ -215,7 +228,7 @@ void runGame(int8_t id){
 
 
 	//Load game from flash to ram
-	W25qxx_ReadSector(myGame.code, id, 0, SIZE_CODE);
+	W25qxx_ReadSector(myGame.code, idGame, 0, SIZE_CODE);
 
 
 	//Init the struct with the drivers
@@ -229,6 +242,13 @@ void runGame(int8_t id){
 
 	//Make sur the function isn't dump by the compilator
 	pong(&myGame);
+}
+
+void setStep(uint8_t newStep){
+	step = newStep;
+}
+void setIdGame(uint8_t newID){
+	idGame = newID;
 }
 
 /* USER CODE END 4 */
