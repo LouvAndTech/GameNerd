@@ -32,6 +32,7 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "./programStruc.h"
+#include "../lib/music.h"
 
 /* USER CODE END Includes */
 
@@ -39,7 +40,13 @@ extern "C" {
 /* USER CODE BEGIN ET */
 
 
-
+typedef enum{
+    STEP_INIT=0,
+	STEP_MENU,
+	STEP_LOAD_GAME,
+	STEP_GAME,
+	STEP_BACKGROUND
+}stepMenu;
 
 
 

@@ -33,7 +33,7 @@
 #include "w25qxx.h"
 
 //include game
-#include "../game/realPong/realPong.h"
+//#include "../game/realPong/realPong.h"
 #include "../inc/Controler.h"
 
 //include menu interface
@@ -81,8 +81,12 @@ uint8_t indexFlash[1] = {0};
 uint8_t buffer1[20];
 uint8_t buffer2[100] = {0};
 */
-uint8_t step = INIT;
+stepMenu step = STEP_INIT;
 uint8_t idGame = 0;
+
+//initialise the program :
+static Program_t myGame;
+static game_fun_t pGame;
 
 /* USER CODE END 0 */
 
@@ -116,8 +120,8 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_SPI1_Init();
-  MX_UART4_Init();
   MX_SPI2_Init();
+  MX_UART4_Init();
   /* USER CODE BEGIN 2 */
 
   W25qxx_Init();
@@ -125,55 +129,55 @@ int main(void)
   //Init The screen
   ssd1306_Init();
 
-  //initialise the program :
-  static Program_t myGame;
-  static game_fun_t pGame;
-
-  //Copy the game into the ram
-  //Copy(myGAME.code)
-  pGame = (& myGame.code[0]) + 1;
-  uint8_t * pG;
-  pG = (uint8_t *)pGame;
-  uint32_t i = 0;
-  while ((pbegin+i) < pend){
-	  myGame.code[i] = pbegin[i];
-	  i++;
-  }
-
-
-  //Init the struct with the drivers
-  static Driver_t drivers;
-  init_drivers(&drivers);
-  myGame.driver = &drivers;
-  myGame.state = 0;
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
-	  switch(step){
-		  case INIT:
-			  step = MENU;
-			  break;
-		  case MENU:
-			  //menuUiInit();
-			  drawMenu();
-			  break;
-		  case GAME:
-			  runGame(idGame);
-			  break;
-		  case BACKGROUND:
-
-			  break;
-	  }
-
+	/* USER CODE END WHILE */
     /* USER CODE BEGIN 3 */
+	static uint8_t game_running = 0;
+	switch(step){
+		case STEP_INIT : {
+			step = STEP_MENU;
+			break;
+		}
+		case STEP_MENU : {
+			game_running = 0;
+			drawMenu(&game_running);
+			if (game_running){
+				step = STEP_LOAD_GAME;
+			}else{
+				step = STEP_BACKGROUND;
+			}
+			break;
+		}
+		case STEP_LOAD_GAME: {
+			loadGame();
+			step = STEP_GAME;
+			break;
+		}
+		case STEP_GAME : {
+			runGame();
+			step = STEP_BACKGROUND;
+			break;
+		}
+		case STEP_BACKGROUND : {
+			MUSIC_Process_main();
 
-	  //pong();
-  }
+			if (!game_running){
+				step = STEP_MENU;
+			}else if(getSelectButton()){
+				step = STEP_MENU;
+			}else{
+				step = STEP_GAME;
+			}
+			break;
+		}
+		}
+
+  	}
   /* USER CODE END 3 */
 }
 
@@ -237,23 +241,20 @@ void init_drivers(Driver_t *d){
 	d->MUSIC_Stop = &MUSIC_Stop;
 }
 
-void runGame(){
-	extern uint8_t _begin_game;
+void loadGame(){
+	//The commented code is used for uploading game to the flash
+	/*extern uint8_t _begin_game;
 	extern uint8_t _end_game;
 
 	volatile uint8_t * pbegin = &_begin_game;
 	volatile uint8_t * pend = &_end_game;
-
-	//initialise the program :
-	static Program_t myGame;
-	static game_fun_t pGame;
 
 
 	//Copy the game into the ram
 	//Copy(myGAME.code)
 	uint8_t * pG;
 	pG = (uint8_t *)pGame;
-	uint32_t i = 0;
+	uint32_t i = 0;*/
 
 
 	//Load game from flash to ram
@@ -266,11 +267,13 @@ void runGame(){
 	myGame.driver = &drivers;
 
 	//Start the program :
-	pGame = (& myGame.code[0]) + 1;
-	pGame(&myGame);
+	pGame = (&myGame.code[0]) + 1;
+	myGame.state = 0;
+}
 
-	//Make sur the function isn't dump by the compilator
-	pong(&myGame);
+void runGame(){
+	pGame(&myGame);
+	//realPong(&myGame); //DEBUG
 }
 
 void setStep(uint8_t newStep){

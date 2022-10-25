@@ -15,7 +15,6 @@
 #define SIZE_RAM 1024
 
 typedef struct{
-	int8_t Select;
 	int8_t Top;
 	int8_t Start;
 	int8_t Right;

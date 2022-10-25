@@ -35,9 +35,6 @@ void pong(Program_t *prog){
 	while(1){
 		prog->driver->getButtonStats(&myRam->buttonStat);
 		//InputButton buttonStats = getButtonStats();
-		if(myRam->buttonStat.Start){
-			myRam->start = 1;
-		}
 		if(!myRam->start){
 			if(myRam->buttonStat.Left){
 				myRam->x--;
@@ -54,7 +51,7 @@ void pong(Program_t *prog){
 			}else if(myRam->buttonStat.B){
 				myRam->fill = 0;
 			}
-			if(myRam->buttonStat.Select){
+			if(myRam->buttonStat.Start){
 				myRam->x = 64;
 				myRam->y = 32;
 			}

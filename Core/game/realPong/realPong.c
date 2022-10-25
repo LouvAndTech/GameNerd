@@ -43,8 +43,6 @@ void realPong(Program_t *prog){
 			//Init the ram
 			myRam = (ram_realPong*) prog->ram;
 			prog->driver->ssd1306_Fill(Black);
-			//Music
-			prog->driver->MUSIC_PlayMusic(GHOST);
 			//Init the variable into the ram
 			myRam->playerY = 32; //The player stay at the X = 5 and mesure 5pix
 			myRam->ballX = 64;
@@ -52,6 +50,7 @@ void realPong(Program_t *prog){
 			myRam->ball_moveX = 1; //Move to the right(1) left(0)
 			myRam->ball_moveY = 1; //Move to the top(1) bottom(0)
 			myRam->last = 0;
+			prog->state = READ_BUTTON;
 			break;
 		}
 		case READ_BUTTON:{
@@ -88,6 +87,8 @@ void realPong(Program_t *prog){
 		case CHECK_COLISION:{
 			if (myRam->ballX==5){
 				if(((myRam->ballY + SIZE_BALL) <= (myRam->playerY - SIZE_PLAYER)) | ((myRam->ballY - SIZE_BALL) >= (myRam->playerY + SIZE_PLAYER))){
+					//sound
+					prog->driver->MUSIC_PlaySound(JUMP);
 					myRam->ball_moveX = !myRam->ball_moveX;
 				}
 			}

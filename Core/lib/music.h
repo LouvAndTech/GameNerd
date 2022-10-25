@@ -28,10 +28,11 @@ typedef enum{
 
 
 void MUSIC_Process_main(void);
-void MUSIC_setVolume(uint8_t vol);
+void MUSIC_SetVolume(uint8_t vol);
 void MUSIC_PlaySound(Sound sound);
 void MUSIC_PlayMusic(Music music);
 void MUSIC_Stop(void);
+void MUSIC_TEST(void);
 
 
 

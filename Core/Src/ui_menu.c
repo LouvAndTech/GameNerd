@@ -16,62 +16,77 @@ uint8_t getMiddle(int8_t max, char* str);
 uint8_t idG = 1;
 uint8_t nbGame[1] = {0};
 uint8_t onAnim = 0;
+uint8_t actuMenuBool = 1;
 InputButton ib;
 char gameName[20] = {0};
 
-void menuUiInit(){
-	/*
-	W25qxx_ReadSector(nbGame, 0, 0, 1);
-	if(nbGame[0] > 0){
-		loadNameGame(idG);
-	}
-	*/
-	ssd1306_Fill(Black);
+void actuMenu(){
+    W25qxx_ReadSector(nbGame, 0, 0, 1);
+    if(nbGame[0] > 0){
+        loadNameGame(idG);
+    }else {
+    	gameName[0] = ' ';
+    	gameName[1] = 'N';
+    	gameName[2] = 'o';
+    	gameName[3] = ' ';
+    	gameName[4] = 'G';
+    	gameName[5] = 'A';
+    	gameName[6] = 'M';
+    	gameName[7] = 'E';
+    }
 
-	ssd1306_SetCursor(32,0); //32 getMiddle(128, "Game Nerd")
-	ssd1306_WriteString("Game Nerd", Font_7x10, White);
+    ssd1306_Fill(Black);
 
-	drawBox(24, 16, "Load Game");
+    ssd1306_SetCursor(32,0); //32 getMiddle(128, "Game Nerd")
+    ssd1306_WriteString("Game Nerd", Font_7x10, White);
 
-	if(onAnim == 0){
-		ssd1306_DrawTriangle(115, 35, 120, 40, 115, 45, White);
-		ssd1306_DrawTriangle(13, 35, 8, 40, 13, 45, White);
-	}
-	ssd1306_UpdateScreen();
+    drawBox(24, 16, "Load Game");
+
+    if(onAnim == 0){
+        ssd1306_DrawTriangle(115, 35, 120, 40, 115, 45, White);
+        ssd1306_DrawTriangle(13, 35, 8, 40, 13, 45, White);
+    }
+    ssd1306_UpdateScreen();
 }
 
-void drawMenu(){
-	menuUiInit();
-	getButtonStats(&ib);
-	if(ib.A){
-		setStep(GAME);
-		setIdGame(idG);
-	}
-	if(ib.Right){
-		if(nbGame[0] > idG){
-			idG++;
-			loadNameGame(idG);
-		}
-	}
-	if(ib.Left){
-		if(idG > 1){
-			idG--;
-			loadNameGame(idG);
-		}
-	}
+void drawMenu(uint8_t *run){
+    if(actuMenuBool == 1){
+        actuMenu();
+        actuMenuBool = 0;
+    }
+    getButtonStats(&ib);
+    if(ib.A){
+        setIdGame(idG);
+        *run = 1;
+    }
+    if(ib.Right){
+        if(nbGame[0] > idG){
+            idG++;
+            actuMenuBool = 1;
+            loadNameGame();
+        }
+    }
+    if(ib.Left){
+        if(idG > 1){
+            idG--;
+            actuMenuBool = 1;
+            loadNameGame();
+        }
+    }
 }
 
 void drawBox(int8_t x, int8_t y, char* name){
-	//strlen(name);
-	ssd1306_DrawRectangle(x, y, x+80, y+40, White);
+    //strlen(name);
+    ssd1306_DrawRectangle(x, y, x+80, y+40, White);
 
     ssd1306_SetCursor(x+2,y+5); //
-	ssd1306_WriteString(gameName, Font_6x8, White);
+    ssd1306_WriteString(gameName, Font_6x8, White);
     ssd1306_SetCursor(x+15,y+20); //
-	ssd1306_WriteString("Start", Font_6x8, White);
+    ssd1306_WriteString("Start", Font_6x8, White);
 }
 
-void loadNameGame(int8_t nbId){
-	W25qxx_ReadSector(gameName, 0, 1, 20);
+void loadNameGame(){
+    uint32_t id1 = (20*(idG-1))+1;
+    uint32_t id2 = (20*(idG-1))+20;
+    W25qxx_ReadSector(gameName, 0, 1, 20);
 }
-

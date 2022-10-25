@@ -20,33 +20,45 @@ static State_music state = RESET;
 static uint32_t lastCall = 0;
 
 void MUSIC_Process_main(void){
+	static uint8_t done = 0;
 	switch(state){
 		case START : {
-			Reset_buff();
-			lastCall = Get_Time();
-			state = PREP;
+			if (!done){
+				Reset_buff();
+				lastCall = Get_Time();
+				state = PREP;
+				done = 1;
+			}else {
+				done = 0;
+			}
 			break;
 		}
 		case PREP : {
-			Chip_reset();
-			send();
-			reset_buff();
-			if (Get_Time()-lastCall >= 1000){
+			if (!done){
+				Chip_reset();
+				Send();
+				Reset_buff();
+				done = 1;
+			}else if (Get_Time()-lastCall >= 1000){
 				lastCall = Get_Time();
 				state = INIT;
+				done = 0;
 			}
 			break;
 		}
 		case INIT : {
-			Init();
-			send();
-			reset_buff();
-			SetVolume(0x05);
-			send();
-			reset_buff();
-			if (Get_Time()-lastCall >= 1000){
+			if (!done){
+				Init();
+				Send();
+				Reset_buff();
+				MUSIC_SetVolume(0x05);
+				Send();
+				Reset_buff();
+				done = 1;
+			}else if (Get_Time()-lastCall >= 500){
 				lastCall = Get_Time();
 				state = INIT;
+				done = 0;
 			}
 			break;
 		}
@@ -57,11 +69,37 @@ void MUSIC_Process_main(void){
 			break;
 		}
 		case SEND : {
-			send();
-			reset_buff();
+			Send();
+			Reset_buff();
 			state = WAIT;
 			break;
 		}
+
+	}
+}
+
+void MUSIC_TEST(void){
+	//Chip reset
+	Reset_buff();
+	Chip_reset();
+	Send();
+	Reset_buff();
+	HAL_Delay(1000);
+	//Init the support
+	Init();
+	Send();
+	Reset_buff();
+	HAL_Delay(50);
+	//Set volume
+	MUSIC_SetVolume(0x05);
+	Send();
+	Reset_buff();
+	HAL_Delay(500);
+	//Start Music
+	MUSIC_PlayMusic(GHOST);
+	Send();
+	Reset_buff();
+	while(1){
 
 	}
 }
