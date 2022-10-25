@@ -128,6 +128,9 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+
+
+    /* USER CODE BEGIN 3 */
 	  switch(step){
 		  case INIT:
 			  step = MENU;
@@ -143,9 +146,6 @@ int main(void)
 
 			  break;
 	  }
-
-    /* USER CODE BEGIN 3 */
-
 	  //pong();
   }
   /* USER CODE END 3 */
