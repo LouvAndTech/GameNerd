@@ -1,0 +1,6 @@
+Added Component: Designator=J1(BARRETTE_4_M_D)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "M_D_4"; VariantName = "[No Variations]"
+Added Member To Class: ClassName=MainCard Member=Component * OLED_20704
+Added Member To Class: ClassName=MainCard Member=Component * BTN_A
+Added Member To Class: ClassName=MainCard Member=Component J1 BARRETTE_4 CONTACTS_1 RANGEE_MALE_DROITE
