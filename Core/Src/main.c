@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "spi.h"
+#include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -69,8 +70,7 @@ void SystemClock_Config(void);
 int8_t buttonStats[] = {0,0,0,0,0,0,0,0};
 
 uint8_t indexFlash[1] = {0};
-uint8_t buffer1[20];
-uint8_t buffer2[100] = {0};
+uint8_t buffer1[SIZE_CODE];
 
 /* USER CODE END 0 */
 
@@ -90,7 +90,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
+  HAL_Delay(1000);
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -104,18 +104,19 @@ int main(void)
   MX_GPIO_Init();
   MX_SPI1_Init();
   MX_SPI2_Init();
+  MX_UART4_Init();
   /* USER CODE BEGIN 2 */
-
+  ssd1306_Init();
   W25qxx_Init();
 
 
+  //0x8003ca4
   extern uint8_t _begin_game;
   extern uint8_t _end_game;
 
-  volatile uint8_t * pbegin = &_begin_game;
-  volatile uint8_t * pend = &_end_game;
-  //Init The screen
-  ssd1306_Init();
+  volatile uint8_t *pbegin = &_begin_game;
+  volatile uint8_t *pend = &_end_game;
+
   /*while(1){
 	  ssd1306_TestCircle();
   }*/
@@ -136,16 +137,17 @@ int main(void)
 
 
   W25qxx_EraseSector(0);
-  int8_t b[1] = {2};
+  int8_t b[1] = {1};
   W25qxx_WriteSector(b, 0, 0, 1);
-  char text[20] = "Pong";
+  char text[20] = "Walla,0.1";
   W25qxx_WriteSector(text, 0, 1, 20);
-  char text2[20] = "Real Pong";
-  W25qxx_WriteSector(text2, 0, 21, 40);
 
 
-  //W25qxx_EraseSector(2);
-  //W25qxx_WriteSector(myGame.code, 2, 0, SIZE_CODE);
+  W25qxx_EraseSector(1);
+  W25qxx_WriteSector(myGame.code,1, 0, SIZE_CODE);
+
+
+  W25qxx_ReadSector(buffer1, 1, 0, SIZE_CODE);
 
   //Init the struct with the drivers
   static Driver_t drivers;
@@ -153,13 +155,21 @@ int main(void)
   myGame.driver = &drivers;
 
   //Start the program :
-  pGame = (& myGame.code[0]) + 1;
-  pGame(&myGame);
+  pGame = (&myGame.code[0]) + 1;
+  myGame.state = 0;
+  volatile uint8_t never = 0;
+  if(never)
+	  pong(&myGame);
+  while(1){
+	  //pong(&myGame);
+	  pGame(&myGame);
+  }
+
 
   //Make sur the function isn't dump by the compilator
-  //pong(&myGame);
-  realPong(&myGame);
 
+  //realPong(&myGame);
+  pong(&myGame);
 
 
 
@@ -243,6 +253,9 @@ void init_drivers(Driver_t *d){
 	d->ssd1306_Fill = &ssd1306_Fill;
 	d->ssd1306_Line = &ssd1306_Line;
 	d->ssd1306_UpdateScreen = &ssd1306_UpdateScreen;
+	d->MUSIC_PlayMusic = &MUSIC_PlayMusic;
+	d->MUSIC_PlaySound = &MUSIC_PlaySound;
+	d->MUSIC_Stop = &MUSIC_Stop;
 }
 
 

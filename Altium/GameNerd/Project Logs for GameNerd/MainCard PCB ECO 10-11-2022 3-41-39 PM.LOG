@@ -1,0 +1,16 @@
+Added Pin To Net: NetName=3v Pin=BTN_A-4
+Added Pin To Net: NetName=3v Pin=BTN_B-3
+Added Pin To Net: NetName=3v Pin=BTN_B-4
+Added Pin To Net: NetName=3v Pin=BTN_DOWN-3
+Added Pin To Net: NetName=3v Pin=BTN_DOWN-4
+Added Pin To Net: NetName=3v Pin=BTN_LEFT-3
+Added Pin To Net: NetName=3v Pin=BTN_LEFT-4
+Added Pin To Net: NetName=3v Pin=BTN_RIGHT-3
+Added Pin To Net: NetName=3v Pin=BTN_RIGHT-4
+Added Pin To Net: NetName=3v Pin=BTN_SELECT-3
+Added Pin To Net: NetName=3v Pin=BTN_SELECT-4
+Added Pin To Net: NetName=3v Pin=BTN_START-3
+Added Pin To Net: NetName=3v Pin=BTN_START-4
+Added Pin To Net: NetName=3v Pin=BTN_TOP-3
+Added Pin To Net: NetName=3v Pin=BTN_TOP-4
+Added Room: Name=MainCard

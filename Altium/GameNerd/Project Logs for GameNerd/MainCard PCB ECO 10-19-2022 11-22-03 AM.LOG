@@ -1,0 +1,11 @@
+Added Component: Designator=*(OLED_20704)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=GND Pin=*-1
+Added Pin To Net: NetName=3v3 Pin=*-2
+Added Pin To Net: NetName=SCL Pin=*-3
+Added Pin To Net: NetName=SDA Pin=*-4
+Added Pin To Net: NetName=RES Pin=*-5
+Added Pin To Net: NetName=DC Pin=*-6
+Added Pin To Net: NetName=CS Pin=*-7
+Added Member To Class: ClassName=MainCard Member=Component * BTN_R200_1
+Added Member To Class: ClassName=MainCard Member=Component * OLED_20704

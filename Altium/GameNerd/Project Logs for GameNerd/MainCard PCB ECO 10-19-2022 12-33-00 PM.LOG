@@ -1,0 +1,11 @@
+Added Component: Designator=J?(BARRETTE_3_F_D)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "Alimentation"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=5v Pin=J?-1
+Added Pin To Net: NetName=GND Pin=J?-3
+Added Pin To Net: NetName=UA_RX Pin=KD1-13
+Added Pin To Net: NetName=UA_TX Pin=KD1-14
+Added Member To Class: ClassName=MainCard Member=Component * OLED_20704
+Added Member To Class: ClassName=MainCard Member=Component * BTN_A
+Added Member To Class: ClassName=MainCard Member=Component J1 BARRETTE_4 CONTACTS_1 RANGEE_MALE_DROITE
+Added Member To Class: ClassName=MainCard Member=Component J? BARRETTE 3 CONTACTS 1 RANGEE FEMELLE DROITE

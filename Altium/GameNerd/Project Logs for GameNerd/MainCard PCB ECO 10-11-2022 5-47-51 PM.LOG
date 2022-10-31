@@ -1,0 +1,13 @@
+Added Pin To Net: NetName=GND Pin=KD1-1
+Added Pin To Net: NetName=GND Pin=KD1-2
+Added Pin To Net: NetName=GND Pin=KD1-49
+Added Pin To Net: NetName=GND Pin=KD1-50
+Added Pin To Net: NetName=GND Pin=KD1-52
+Added Pin To Net: NetName=GND Pin=KD1-99
+Added Pin To Net: NetName=GND Pin=KD1-100
+Added Member To Class: ClassName=MainCard Member=Component R? RESISTANCE_CMS_0805
+Added Member To Class: ClassName=MainCard Member=Component R? RESISTANCE_CMS_0805
+Added Member To Class: ClassName=MainCard Member=Component R? RESISTANCE_CMS_0805
+Added Member To Class: ClassName=MainCard Member=Component R? RESISTANCE_CMS_0805
+Added Member To Class: ClassName=MainCard Member=Component R? RESISTANCE_CMS_0805
+Added Room: Name=MainCard

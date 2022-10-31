@@ -1,0 +1,21 @@
+Added Component: Designator=C4(CONDENSATEUR_CMS_1206)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "CMS_1206"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "100nF"; VariantName = "[No Variations]"
+Added Component: Designator=C5(CONDENSATEUR_CMS_1206)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "CMS_1206"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "100nF"; VariantName = "[No Variations]"
+Added Component: Designator=C6(CONDENSATEUR_CMS_1206)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "CMS_1206"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "100nF"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=C4-1
+Added Pin To Net: NetName=3v3 Pin=C4-2
+Added Pin To Net: NetName=GND Pin=C5-1
+Added Pin To Net: NetName=3v3 Pin=C5-2
+Added Pin To Net: NetName=3v3 Pin=C6-1
+Added Pin To Net: NetName=GND Pin=C6-2
+Added Member To Class: ClassName=MainCard Member=Component C4 CMS_1206
+Added Member To Class: ClassName=MainCard Member=Component C5 CMS_1206
+Added Member To Class: ClassName=MainCard Member=Component C6 CMS_1206

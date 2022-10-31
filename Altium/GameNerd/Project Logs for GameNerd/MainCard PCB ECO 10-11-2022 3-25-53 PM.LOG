@@ -1,0 +1,6 @@
+Change Component Designator: OldDesignator=W25L NewDesignator=J3
+Change Component Designator: OldDesignator=W25R NewDesignator=J4
+Added Component: Designator=J?(BARRETTE_6_F_D)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Type"; Value = "F_D_6"; VariantName = "[No Variations]"
+Added Member To Class: ClassName=MainCard Member=Component J? BARRETTE_6 CONTACTS_1 RANGEE_FEMELLE_DROITE
