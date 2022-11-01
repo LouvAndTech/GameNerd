@@ -57,7 +57,7 @@ void MUSIC_Process_main(void){
 				done = 1;
 			}else if (Get_Time()-lastCall >= 500){
 				lastCall = Get_Time();
-				state = INIT;
+				state = WAIT;
 				done = 0;
 			}
 			break;
