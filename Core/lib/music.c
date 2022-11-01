@@ -51,7 +51,7 @@ void MUSIC_Process_main(void){
 				Init();
 				Send();
 				Reset_buff();
-				MUSIC_SetVolume(0x05);
+				MUSIC_SetVolume(0x50);
 				Send();
 				Reset_buff();
 				done = 1;
