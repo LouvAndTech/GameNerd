@@ -90,3 +90,7 @@ void loadNameGame(){
     uint32_t id2 = (20*(idG-1))+20;
     W25qxx_ReadSector(gameName, 0, 1, 20);
 }
+
+void actualiseMenu(){
+	actuMenuBool = 1;
+}

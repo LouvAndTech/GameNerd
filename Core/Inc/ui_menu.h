@@ -11,6 +11,7 @@
 
 //def function
 void drawMenu();
+void actualiseMenu();
 
 
 #endif /* LIB_UI_MENU_H_ */

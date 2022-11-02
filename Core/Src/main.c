@@ -168,8 +168,10 @@ int main(void)
 
 			if (!game_running){
 				step = STEP_MENU;
+				actualiseMenu();
 			}else if(getSelectButton()){
 				step = STEP_MENU;
+				actualiseMenu();
 			}else{
 				step = STEP_GAME;
 			}
