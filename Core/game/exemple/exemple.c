@@ -13,11 +13,12 @@
 typedef enum{
     INIT=0,
     GAME
-}states;
+}statese;
 
 typedef enum{
 	MAIN_GAME = 0,
-}state_machine_e;
+	TEST
+}state_machine_ee;
 
 typedef struct{
 	int8_t stateMachine;
@@ -30,16 +31,16 @@ typedef struct{
 	int8_t bally;
 	int8_t speedx;
 	int8_t speedy;
-	char strscore[10];
-	int8_t i;
-}ram_pong;
+
+	char alla[50];
+}ram_ponge;
 
 
-void pong(Program_t *prog){
-    ram_pong *myRam = (ram_pong*) prog->ram;
+void ponge(Program_t *prog){
+    ram_ponge *myRam = (ram_ponge*) prog->ram;
     switch(prog->state){
         case INIT:{
-        	myRam->stateMachine = MAIN_GAME;
+        	myRam->stateMachine = TEST;
         	myRam->barj1 = 32;
         	myRam->barj2 = 32;
         	myRam->ballx = 64;
@@ -58,16 +59,16 @@ void pong(Program_t *prog){
 
 
 					if(myRam->buttonStat.Top && myRam->barj1>10){
-						myRam->barj1-=1;
+						myRam->barj1-=2;
 					}
 					if(myRam->buttonStat.Bottom && myRam->barj1<54){
-						myRam->barj1+=1;
+						myRam->barj1+=2;
 					}
 					if(myRam->buttonStat.A && myRam->barj2>10){
-						myRam->barj2-=1;
+						myRam->barj2-=2;
 					}
 					if(myRam->buttonStat.B && myRam->barj2<54){
-						myRam->barj2+=1;
+						myRam->barj2+=2;
 					}
 
 
@@ -88,11 +89,9 @@ void pong(Program_t *prog){
 					if(myRam->ballx==0 || myRam->ballx==-126){
 						if(myRam->ballx==0){
 							myRam->speedx=1;
-							myRam->scorej2+=1;
 						}
 						if(myRam->ballx==-126){
 							myRam->speedx=-1;
-							myRam->scorej1+=1;
 						}
 						myRam->ballx=64;
 						myRam->bally = 32;
@@ -101,24 +100,23 @@ void pong(Program_t *prog){
 						myRam->barj2 = 32;
 					}
 
+
 					myRam->ballx+=myRam->speedx;
 					myRam->bally+=myRam->speedy;
-
-
-
 					prog->driver->ssd1306_Fill(Black);
-					prog->driver->sprintf(myRam->strscore,"%1d   %1d",myRam->scorej1,myRam->scorej2);
-					prog->driver->ssd1306_SetCursor(49,0);
-					prog->driver->ssd1306_WriteString(myRam->strscore,Font_6x8,White);
-
-					for(myRam->i=0; myRam->i<8; myRam->i++){
-						prog->driver->ssd1306_Line(64, myRam->i*8, 64, (myRam->i*8)+4, White);
-					}
-
-
 					prog->driver->ssd1306_Line(5, myRam->barj1-10, 5, myRam->barj1+10, White);
 					prog->driver->ssd1306_Line(122, myRam->barj2-10, 122, myRam->barj2+10, White);
 					prog->driver->ssd1306_DrawCircle(myRam->ballx-1, myRam->bally-1, 1, White);
+					prog->driver->ssd1306_UpdateScreen();
+					break;
+
+
+				case TEST:
+					prog->driver->sprintf(myRam->alla,"x:%03d y:%03d",myRam->ballx, myRam->bally);
+					//ssd1306_TestAll();
+					prog->driver->ssd1306_SetCursor(2,0);
+					prog->driver->ssd1306_WriteString(myRam->alla, Font_6x8, White);
+
 					prog->driver->ssd1306_UpdateScreen();
 					break;
         	}

@@ -24,6 +24,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "stdio.h"
 #include "../lib/ssd1306_tests.h"
 #include "w25qxx.h"
 
@@ -146,7 +147,6 @@ int main(void)
   W25qxx_EraseSector(1);
   W25qxx_WriteSector(myGame.code,1, 0, SIZE_CODE);
 
-
   W25qxx_ReadSector(buffer1, 1, 0, SIZE_CODE);
 
   //Init the struct with the drivers
@@ -256,8 +256,10 @@ void init_drivers(Driver_t *d){
 	d->MUSIC_PlayMusic = &MUSIC_PlayMusic;
 	d->MUSIC_PlaySound = &MUSIC_PlaySound;
 	d->MUSIC_Stop = &MUSIC_Stop;
+	d->ssd1306_SetCursor = &ssd1306_SetCursor;
+	d->ssd1306_WriteString = &ssd1306_WriteString;
+	d->sprintf = &sprintf;
 }
-
 
 /* USER CODE END 4 */
 

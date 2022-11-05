@@ -30,6 +30,9 @@ typedef struct{
 	void (*ssd1306_Line)(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2, SSD1306_COLOR color);
 	void (*ssd1306_DrawCircle)(uint8_t par_x, uint8_t par_y, uint8_t par_r, SSD1306_COLOR color);
 	void (*ssd1306_DrawRectangle)(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2, SSD1306_COLOR color);
+	char (*ssd1306_WriteString)(char* str, FontDef Font, SSD1306_COLOR color);
+	void (*ssd1306_SetCursor)(uint8_t x, uint8_t y);
+	int	(*sprintf)(char *__restrict, const char *__restrict, ...);
 	void (*getButtonStats)(InputButton *btn);
 	void (*MUSIC_PlaySound)(Sound sound);
 	void (*MUSIC_PlayMusic)(Music music);

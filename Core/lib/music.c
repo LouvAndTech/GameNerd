@@ -91,7 +91,7 @@ void MUSIC_TEST(void){
 	Reset_buff();
 	HAL_Delay(50);
 	//Set volume
-	MUSIC_SetVolume(0x05);
+	MUSIC_SetVolume(0x50);
 	Send();
 	Reset_buff();
 	HAL_Delay(500);
