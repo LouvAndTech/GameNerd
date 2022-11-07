@@ -26,6 +26,8 @@
 /* USER CODE BEGIN Includes */
 
 //include screen lib
+#include "config.h"
+#include "stdio.h"
 #include "../lib/ssd1306_tests.h"
 #include "../lib/music.h"
 
@@ -33,7 +35,9 @@
 #include "w25qxx.h"
 
 //include game
-//#include "../game/realPong/realPong.h"
+#include "../game/pong/pong.h"
+
+
 #include "../inc/Controler.h"
 
 //include menu interface
@@ -74,13 +78,14 @@ void SystemClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-/*
+
 int8_t buttonStats[] = {0,0,0,0,0,0,0,0};
 
 uint8_t indexFlash[1] = {0};
-uint8_t buffer1[20];
-uint8_t buffer2[100] = {0};
-*/
+uint8_t buffer1[SIZE_CODE];
+
+
+
 stepMenu step = STEP_INIT;
 uint8_t idGame = 0;
 
@@ -133,6 +138,9 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
+#if (FLASH_MEMORY_ == 1)
+
   while (1)
   {
 	/* USER CODE END WHILE */
@@ -180,6 +188,64 @@ int main(void)
 		}
 
   	}
+
+#else
+
+
+  extern uint8_t _begin_game;
+    extern uint8_t _end_game;
+
+    volatile uint8_t *pbegin = &_begin_game;
+    volatile uint8_t *pend = &_end_game;
+
+    /*while(1){
+  	  ssd1306_TestCircle();
+    }*/
+    //initialise the program :
+    static Program_t myGame;
+    static game_fun_t pGame;
+
+
+    //Copy the game into the ram
+    //Copy(myGAME.code)
+    uint8_t * pG;
+    pG = (uint8_t *)pGame;
+    uint32_t i = 0;
+    while ((pbegin+i) < pend){
+  	  myGame.code[i] = pbegin[i];
+  	  i++;
+    }
+
+
+    W25qxx_EraseSector(0);
+    int8_t b[1] = {1};
+    W25qxx_WriteSector(b, 0, 0, 1);
+    char text[20] = "Walla,0.1";
+    W25qxx_WriteSector(text, 0, 1, 20);
+
+
+    W25qxx_EraseSector(1);
+    W25qxx_WriteSector(myGame.code,1, 0, SIZE_CODE);
+
+    W25qxx_ReadSector(buffer1, 1, 0, SIZE_CODE);
+
+    //Init the struct with the drivers
+    static Driver_t drivers;
+    init_drivers(&drivers);
+    myGame.driver = &drivers;
+
+    //Start the program :
+    pGame = (&myGame.code[0]) + 1;
+    myGame.state = 0;
+    volatile uint8_t never = 0;
+    if(never)
+  	  pong(&myGame);
+    while(1){
+  	  //pong(&myGame);
+  	  pGame(&myGame);
+    }
+
+#endif
   /* USER CODE END 3 */
 }
 
@@ -241,6 +307,9 @@ void init_drivers(Driver_t *d){
 	d->MUSIC_PlayMusic = &MUSIC_PlayMusic;
 	d->MUSIC_PlaySound = &MUSIC_PlaySound;
 	d->MUSIC_Stop = &MUSIC_Stop;
+	d->ssd1306_SetCursor = &ssd1306_SetCursor;
+	d->ssd1306_WriteString = &ssd1306_WriteString;
+	d->sprintf = &sprintf;
 }
 
 void loadGame(){
