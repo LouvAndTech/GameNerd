@@ -28,6 +28,7 @@
 //include screen lib
 #include "../lib/ssd1306_tests.h"
 #include "../lib/music.h"
+#include "config.h"
 
 //include flash lib
 #include "w25qxx.h"
@@ -133,6 +134,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+#if (MEMORY_FLASH == 0)
   while (1)
   {
 	/* USER CODE END WHILE */
@@ -180,6 +182,11 @@ int main(void)
 		}
 
   	}
+#else
+
+  blabla
+
+#endif
   /* USER CODE END 3 */
 }
 
