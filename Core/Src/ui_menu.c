@@ -75,6 +75,7 @@ typedef enum{
 static MenuState menu_state = Init;
 
 void drawMenu(uint8_t *run){
+	static uint8_t was_in_game = 0;
 	switch(menu_state){
 		case Init:{
 			actuMenu();
@@ -87,12 +88,18 @@ void drawMenu(uint8_t *run){
 			break;
 		}
 		case Jeux_pros:{
+			if(was_in_game){
+				menu_state = Jeux_init;
+				was_in_game = 0;
+				break;
+			}
 			getButtonStats(&ib);
 			if (ib.Right){
 				menu_state = Son_init;
 			}else if(ib.A){
 				setIdGame(idG);
 				*run = 1;
+				was_in_game = 1;
 			}
 			break;
 		}
@@ -102,13 +109,13 @@ void drawMenu(uint8_t *run){
 			break;
 		}
 		case Son:{
-			static uint8_t vol = 50;
+			static uint8_t vol = 100;
 			menuSon();
 			getButtonStats(&ib);
 			if (ib.Left){
 				menu_state = Jeux_init;
 			}else if(ib.Top){
-				vol = (vol>=100)?100:vol+10;
+				vol = (vol>=255)?255:vol+10;
 			}else if(ib.Bottom){
 				vol = (vol<=0)?0:vol-10;
 			}else if(ib.A){
@@ -124,9 +131,12 @@ void drawMenu(uint8_t *run){
 }
 
 void drawVolBar(uint8_t vol){
-	ssd1306_DrawRectangle(14, 21 , 14+100, 21+20, Black);
-	ssd1306_DrawRectangle(14, 21 , 14+vol, 21+20, White);
+	static uint16_t last_pos;
+	uint8_t bar_pos = 14+((vol*100)/255);
+	ssd1306_DrawRectangle(29, 21 , last_pos, 21+20, Black);
+	ssd1306_DrawRectangle(29, 21 , bar_pos , 21+20, White);
 	ssd1306_UpdateScreen();
+	last_pos = bar_pos;
 }
 
 void drawBox(int8_t x, int8_t y, char* name){
@@ -144,5 +154,5 @@ void loadNameGame(){
 }
 
 void actualiseMenu(){
-	actuMenuBool = 1;
+	menu_state = Jeux_init;
 }

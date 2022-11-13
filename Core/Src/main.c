@@ -30,6 +30,7 @@
 #include "../lib/ssd1306_tests.h"
 #include "../lib/music.h"
 #include "config.h"
+#include "math.h"
 
 //include flash lib
 #include "w25qxx.h"
@@ -190,7 +191,7 @@ int main(void)
 
 			if (!game_running){
 				step = STEP_MENU;
-				actualiseMenu();
+				//actualiseMenu();
 			}else if(getSelectButton()){
 				step = STEP_MENU;
 				actualiseMenu();
@@ -257,7 +258,6 @@ int main(void)
 	  //pong(&myGame);
 	  pGame(&myGame);
 	}
-
 
 	//Make sur the function isn't dump by the compilator
 
@@ -330,25 +330,13 @@ void init_drivers(Driver_t *d){
 	d->ssd1306_SetCursor = &ssd1306_SetCursor;
 	d->ssd1306_WriteString = &ssd1306_WriteString;
 	d->sprintf = &sprintf;
+	d->cos = &cos;
+	d->sin = &sin;
+	d->tan = &tan;
 }
 
 #if (MEMORY_FLASH == 0)
 void loadGame(){
-	//The commented code is used for uploading game to the flash
-	/*extern uint8_t _begin_game;
-	extern uint8_t _end_game;
-
-	volatile uint8_t * pbegin = &_begin_game;
-	volatile uint8_t * pend = &_end_game;
-
-
-	//Copy the game into the ram
-	//Copy(myGAME.code)
-	uint8_t * pG;
-	pG = (uint8_t *)pGame;
-	uint32_t i = 0;*/
-
-
 	//Load game from flash to ram
 	W25qxx_ReadSector(myGame.code, idGame, 0, SIZE_CODE);
 
