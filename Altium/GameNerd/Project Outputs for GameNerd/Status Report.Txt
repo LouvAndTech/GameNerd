@@ -1,0 +1,12 @@
+Output: Gerber Files
+Type  : Gerber
+From  : Variant [[No Variations]] of Project [GameNerd.PrjPcb]
+   Generated File[MainCard.RUL]
+   Generated File[MainCard.EXTREP]
+   Generated File[MainCard.REP]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 10:04:56 AM On 11/8/2022
