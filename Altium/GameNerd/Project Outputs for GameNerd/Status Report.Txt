@@ -1,12 +1,12 @@
-Output: Gerber Files
-Type  : Gerber
-From  : Variant [[No Variations]] of Project [GameNerd.PrjPcb]
-   Generated File[MainCard.RUL]
-   Generated File[MainCard.EXTREP]
-   Generated File[MainCard.REP]
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [GameNerd.PrjPcb]
+   Generated File[MainCard.TXT]
+   Generated File[MainCard.LDP]
+   Generated File[MainCard.DRR]
 
 
 Files Generated   : 3
 Documents Printed : 0
 
-Finished Output Generation At 10:04:56 AM On 11/8/2022
+Finished Output Generation At 9:42:18 PM On 11/13/2022
