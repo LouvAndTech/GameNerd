@@ -221,7 +221,8 @@ void ssd1306_DrawPixel(uint8_t x, uint8_t y, SSD1306_COLOR color) {
 // color    => Black or White
 char ssd1306_WriteChar(char ch, FontDef Font, SSD1306_COLOR color) {
     uint32_t i, b, j;
-    
+
+    //FontDef Font = Font_6x8;
     // Check if character is valid
     if (ch < 32 || ch > 126)
         return 0;
@@ -251,6 +252,10 @@ char ssd1306_WriteChar(char ch, FontDef Font, SSD1306_COLOR color) {
     
     // Return written char for validation
     return ch;
+}
+
+char ssd1306_WriteString_better(char* str, SSD1306_COLOR color){
+	ssd1306_WriteString(str, Font_6x8, color);
 }
 
 // Write full string to screenbuffer

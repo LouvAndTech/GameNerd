@@ -11,8 +11,8 @@
 #include "../lib/ssd1306.h"
 #include "../lib/music.h"
 
-#define SIZE_CODE 1024
-#define SIZE_RAM 1024
+#define SIZE_CODE 2048
+#define SIZE_RAM 2048
 
 typedef struct{
 	int8_t Top;
@@ -34,7 +34,7 @@ typedef struct{
 	void (*MUSIC_PlaySound)(Sound sound);
 	void (*MUSIC_PlayMusic)(Music music);
 	void (*MUSIC_Stop)(void);
-	char (*ssd1306_WriteString)(char* str, FontDef Font, SSD1306_COLOR color);
+	char (*ssd1306_WriteString_better)(char* str, SSD1306_COLOR color);
 	void (*ssd1306_SetCursor)(uint8_t x, uint8_t y);
 	double (*cos)(double);
 	double (*sin)(double);

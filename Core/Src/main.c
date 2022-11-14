@@ -328,7 +328,7 @@ void init_drivers(Driver_t *d){
 	d->MUSIC_PlaySound = &MUSIC_PlaySound;
 	d->MUSIC_Stop = &MUSIC_Stop;
 	d->ssd1306_SetCursor = &ssd1306_SetCursor;
-	d->ssd1306_WriteString = &ssd1306_WriteString;
+	d->ssd1306_WriteString_better = &ssd1306_WriteString_better;
 	d->cos = &cos;
 	d->sin = &sin;
 	d->tan = &tan;

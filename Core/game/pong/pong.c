@@ -91,10 +91,18 @@ void pong(Program_t *prog){
 						if(myRam->ballx==0){
 							myRam->speedx=1;
 							myRam->scorej2+=1;
+							if(myRam->scorej2 > 9){
+								myRam->scorej2=0;
+							}
+							//myRam->scorej2=(myRam->scorej2 >= 10)? 0 : myRam->scorej2+1;
 						}
 						if(myRam->ballx==-126){
 							myRam->speedx=-1;
 							myRam->scorej1+=1;
+							if(myRam->scorej1 > 9){
+								myRam->scorej1=0;
+							}
+							//myRam->scorej1=(myRam->scorej1 >= 10)? 0 : myRam->scorej1+1;
 						}
 						myRam->ballx=64;
 						myRam->bally = 32;
@@ -111,11 +119,11 @@ void pong(Program_t *prog){
 					prog->driver->ssd1306_Fill(Black);
 					//prog->driver->sprintf(myRam->strscore,"%1d   %1d",myRam->scorej1,myRam->scorej2);
 					myRam->strscore[0] = myRam->scorej1+48;
-					myRam->strscore[1] = 20;
-					myRam->strscore[2] = 20;
-					myRam->strscore[3] = myRam->scorej2+48;
-					prog->driver->ssd1306_SetCursor(49,0);
-					prog->driver->ssd1306_WriteString(myRam->strscore,Font_6x8,White);
+					prog->driver->ssd1306_SetCursor(58,0);
+					prog->driver->ssd1306_WriteString_better(myRam->strscore,White);
+					myRam->strscore[0] = myRam->scorej2+48;
+					prog->driver->ssd1306_SetCursor(66,0);
+					prog->driver->ssd1306_WriteString_better(myRam->strscore,White);
 
 					for(myRam->i=0; myRam->i<8; myRam->i++){
 						prog->driver->ssd1306_Line(64, myRam->i*8, 64, (myRam->i*8)+4, White);
