@@ -9,6 +9,6 @@
 #define INC_CONFIG_H_
 
 #define MEMORY_FLASH	0
-#define MEMORY_NAME		"Space"
+#define MEMORY_NAME		"Pong"
 
 #endif /* INC_CONFIG_H_ */

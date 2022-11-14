@@ -51,7 +51,7 @@ void actuMenu(){
     ssd1306_UpdateScreen();
 }
 
-void menuSon(){
+void menuSon(uint8_t vol){
 	ssd1306_Fill(Black);
 	ssd1306_SetCursor(32,0); //32 getMiddle(128, "Game Nerd")
 	ssd1306_WriteString("Game Nerd", Font_7x10, White);
@@ -61,6 +61,7 @@ void menuSon(){
 		ssd1306_DrawTriangle(115, 35, 120, 40, 115, 45, White);
 		ssd1306_DrawTriangle(13, 35, 8, 40, 13, 45, White);
 	}
+	drawVolBar(vol);
 	ssd1306_UpdateScreen();
 
 }
@@ -109,19 +110,19 @@ void drawMenu(uint8_t *run){
 			break;
 		}
 		case Son:{
-			static uint8_t vol = 100;
-			menuSon();
+			static uint8_t vol = 15;
+			menuSon(vol);
 			getButtonStats(&ib);
 			if (ib.Left){
 				menu_state = Jeux_init;
 			}else if(ib.Top){
-				vol = (vol>=255)?255:vol+10;
+				vol = (vol>=30)?30:vol+2;
 			}else if(ib.Bottom){
-				vol = (vol<=0)?0:vol-10;
+				vol = (vol<=0)?0:vol-2;
 			}else if(ib.A){
 				MUSIC_SetVolume(vol);
 			}
-			drawVolBar(vol);
+			//drawVolBar(vol);
 			while(ib.Top || ib.Bottom || ib.A){
 				getButtonStats(&ib);
 			}
@@ -131,11 +132,13 @@ void drawMenu(uint8_t *run){
 }
 
 void drawVolBar(uint8_t vol){
-	static uint16_t last_pos;
-	uint8_t bar_pos = 14+((vol*100)/255);
-	ssd1306_DrawRectangle(29, 21 , last_pos, 21+20, Black);
-	ssd1306_DrawRectangle(29, 21 , bar_pos , 21+20, White);
-	ssd1306_UpdateScreen();
+	static uint8_t last_pos;
+	uint8_t bar_pos = 29+((vol*70)/30);
+	if(last_pos != bar_pos){
+		ssd1306_DrawRectangle(29, 41 , last_pos, 41+10, Black);
+	}
+	ssd1306_DrawRectangle(29, 41 , bar_pos , 41+10, White);
+	//ssd1306_UpdateScreen();
 	last_pos = bar_pos;
 }
 
