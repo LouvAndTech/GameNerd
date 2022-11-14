@@ -329,10 +329,10 @@ void init_drivers(Driver_t *d){
 	d->MUSIC_Stop = &MUSIC_Stop;
 	d->ssd1306_SetCursor = &ssd1306_SetCursor;
 	d->ssd1306_WriteString = &ssd1306_WriteString;
-	d->sprintf = &sprintf;
 	d->cos = &cos;
 	d->sin = &sin;
 	d->tan = &tan;
+	d->ssd1306_WriteChar = &ssd1306_WriteChar;
 }
 
 #if (MEMORY_FLASH == 0)

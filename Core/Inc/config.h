@@ -8,7 +8,7 @@
 #ifndef INC_CONFIG_H_
 #define INC_CONFIG_H_
 
-#define MEMORY_FLASH	0
+#define MEMORY_FLASH	1
 #define MEMORY_NAME		"Pong"
 
 #endif /* INC_CONFIG_H_ */

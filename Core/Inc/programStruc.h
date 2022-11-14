@@ -36,10 +36,10 @@ typedef struct{
 	void (*MUSIC_Stop)(void);
 	char (*ssd1306_WriteString)(char* str, FontDef Font, SSD1306_COLOR color);
 	void (*ssd1306_SetCursor)(uint8_t x, uint8_t y);
-	int	(*sprintf)(char *__restrict, const char *__restrict, ...);
 	double (*cos)(double);
 	double (*sin)(double);
 	double (*tan)(double);
+	char (*ssd1306_WriteChar)(char ch, FontDef Font, SSD1306_COLOR color);
 }Driver_t;
 
 

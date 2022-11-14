@@ -109,7 +109,11 @@ void pong(Program_t *prog){
 
 
 					prog->driver->ssd1306_Fill(Black);
-					prog->driver->sprintf(myRam->strscore,"%1d   %1d",myRam->scorej1,myRam->scorej2);
+					//prog->driver->sprintf(myRam->strscore,"%1d   %1d",myRam->scorej1,myRam->scorej2);
+					myRam->strscore[0] = myRam->scorej1+48;
+					myRam->strscore[1] = 20;
+					myRam->strscore[2] = 20;
+					myRam->strscore[3] = myRam->scorej2+48;
 					prog->driver->ssd1306_SetCursor(49,0);
 					prog->driver->ssd1306_WriteString(myRam->strscore,Font_6x8,White);
 
