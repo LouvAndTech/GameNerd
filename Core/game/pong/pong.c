@@ -8,61 +8,136 @@
 
 #include "../lib/ssd1306.h"
 #include "../lib/ssd1306_tests.h"
+#include "../game/pong/pong.h"
 
-int8_t x = 64;
-int8_t sensx = 2;
-int8_t y = 32;
-int8_t sensy = 1;
-int8_t fill = 0;
-int8_t start = 0;
+typedef enum{
+    INIT=0,
+    GAME
+}states;
 
-void pong(void){
-	InputButton buttonStats = getButtonStats();
-	/*
-	if(x>=128){
-		sensx=-sensx;
-	}else if(x<=10){
-		sensx=-sensx;
-	}
-	if(y>=64){
-		sensy=-sensy;
-	}else if(y<=10){
-		sensy=-sensy;
-	}
-	x+=sensx;
-	y+=sensy;
-	*/
-	if(buttonStats.Start){
-		start = 1;
-	}
-	if(!start){
-		if(buttonStats.Left){
-			x--;
-		}else if(buttonStats.Right){
-			x++;
-		}
-		if(buttonStats.Bottom){
-			y++;
-		}else if(buttonStats.Top){
-			y--;
-		}
-		if(buttonStats.A){
-			fill = 1;
-		}else if(buttonStats.B){
-			fill = 0;
-		}
-		if(buttonStats.Select){
-			x = 64;
-			y = 32;
-		}
+typedef enum{
+	MAIN_GAME = 0,
+}state_machine_e;
 
-		if(fill){
-			ssd1306_Fill(Black);
-		}else{
-			ssd1306_Fill(White);
-		}
-		ssd1306_DrawCircle(x-5, y-5, 5, White);
-		ssd1306_UpdateScreen();
-	}
+typedef struct{
+	int8_t stateMachine;
+	InputButton buttonStat;
+	int8_t scorej1;
+	int8_t scorej2;
+	int8_t barj1;
+	int8_t barj2;
+	int8_t ballx;
+	int8_t bally;
+	int8_t speedx;
+	int8_t speedy;
+	char strscore[10];
+	int8_t i;
+}ram_pong;
+
+
+void pong(Program_t *prog){
+    ram_pong *myRam = (ram_pong*) prog->ram;
+    switch(prog->state){
+        case INIT:{
+        	myRam->stateMachine = MAIN_GAME;
+        	myRam->barj1 = 32;
+        	myRam->barj2 = 32;
+        	myRam->ballx = 64;
+        	myRam->bally = 32;
+        	myRam->scorej1 = 0;
+        	myRam->scorej2 = 0;
+        	myRam->speedx = 1;
+        	myRam->speedy = 1;
+        	prog->state = GAME;
+            break;
+            }
+        case GAME:{
+        	prog->driver->getButtonStats(&myRam->buttonStat);
+        	switch(myRam->stateMachine){
+				case MAIN_GAME:
+
+
+					if(myRam->buttonStat.Top && myRam->barj1>10){
+						myRam->barj1-=1;
+					}
+					if(myRam->buttonStat.Bottom && myRam->barj1<54){
+						myRam->barj1+=1;
+					}
+					if(myRam->buttonStat.A && myRam->barj2>10){
+						myRam->barj2-=1;
+					}
+					if(myRam->buttonStat.B && myRam->barj2<54){
+						myRam->barj2+=1;
+					}
+
+
+					if(myRam->ballx==121 && myRam->bally<myRam->barj2+10 && myRam->bally>myRam->barj2-10){
+						myRam->speedx=-myRam->speedx;
+						prog->driver->MUSIC_PlaySound(SHOOT);
+					}
+					if(myRam->ballx==8 && myRam->bally<myRam->barj1+10 && myRam->bally>myRam->barj1-10){
+						myRam->speedx=-myRam->speedx;
+						prog->driver->MUSIC_PlaySound(SHOOT);
+					}
+					if(myRam->bally==0){
+						myRam->speedy=-myRam->speedy;
+					}
+					if(myRam->bally==64){
+						myRam->speedy=-myRam->speedy;
+					}
+
+
+					if(myRam->ballx==0 || myRam->ballx==-126){
+						if(myRam->ballx==0){
+							myRam->speedx=1;
+							myRam->scorej2+=1;
+							if(myRam->scorej2 > 9){
+								myRam->scorej2=0;
+							}
+							//myRam->scorej2=(myRam->scorej2 >= 10)? 0 : myRam->scorej2+1;
+						}
+						if(myRam->ballx==-126){
+							myRam->speedx=-1;
+							myRam->scorej1+=1;
+							if(myRam->scorej1 > 9){
+								myRam->scorej1=0;
+							}
+							//myRam->scorej1=(myRam->scorej1 >= 10)? 0 : myRam->scorej1+1;
+						}
+						myRam->ballx=64;
+						myRam->bally = 32;
+						myRam->speedy = 1;
+						myRam->barj1 = 32;
+						myRam->barj2 = 32;
+					}
+
+					myRam->ballx+=myRam->speedx;
+					myRam->bally+=myRam->speedy;
+
+
+
+					prog->driver->ssd1306_Fill(Black);
+					//prog->driver->sprintf(myRam->strscore,"%1d   %1d",myRam->scorej1,myRam->scorej2);
+					myRam->strscore[0] = myRam->scorej1+48;
+					prog->driver->ssd1306_SetCursor(58,0);
+					prog->driver->ssd1306_WriteString_better(myRam->strscore,White);
+					myRam->strscore[0] = myRam->scorej2+48;
+					prog->driver->ssd1306_SetCursor(66,0);
+					prog->driver->ssd1306_WriteString_better(myRam->strscore,White);
+
+					for(myRam->i=0; myRam->i<8; myRam->i++){
+						prog->driver->ssd1306_Line(64, myRam->i*8, 64, (myRam->i*8)+4, White);
+					}
+
+
+					prog->driver->ssd1306_Line(5, myRam->barj1-10, 5, myRam->barj1+10, White);
+					prog->driver->ssd1306_Line(122, myRam->barj2-10, 122, myRam->barj2+10, White);
+					prog->driver->ssd1306_DrawCircle(myRam->ballx-1, myRam->bally-1, 1, White);
+					prog->driver->ssd1306_UpdateScreen();
+					break;
+        	}
+
+            break;
+        }
+    }
 }
-

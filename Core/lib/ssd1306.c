@@ -221,7 +221,8 @@ void ssd1306_DrawPixel(uint8_t x, uint8_t y, SSD1306_COLOR color) {
 // color    => Black or White
 char ssd1306_WriteChar(char ch, FontDef Font, SSD1306_COLOR color) {
     uint32_t i, b, j;
-    
+
+    //FontDef Font = Font_6x8;
     // Check if character is valid
     if (ch < 32 || ch > 126)
         return 0;
@@ -251,6 +252,10 @@ char ssd1306_WriteChar(char ch, FontDef Font, SSD1306_COLOR color) {
     
     // Return written char for validation
     return ch;
+}
+
+char ssd1306_WriteString_better(char* str, SSD1306_COLOR color){
+	ssd1306_WriteString(str, Font_6x8, color);
 }
 
 // Write full string to screenbuffer
@@ -437,6 +442,13 @@ void ssd1306_DrawRectangle(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2, SSD13
   ssd1306_Line(x1,y2,x1,y1,color);
 
   return;
+}
+
+
+void ssd1306_DrawTriangle(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2, uint8_t x3, uint8_t y3, SSD1306_COLOR color){
+	ssd1306_Line(x1,y1,x2,y2,color);
+	ssd1306_Line(x2,y2,x3,y3,color);
+	ssd1306_Line(x3,y3,x1,y1,color);
 }
 
 //Draw bitmap - ported from the ADAFruit GFX library

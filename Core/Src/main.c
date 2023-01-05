@@ -19,21 +19,43 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "spi.h"
+#include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
-#include "../lib/ssd1306.h"
+//include screen lib
+#include "stdio.h"
 #include "../lib/ssd1306_tests.h"
+#include "../lib/music.h"
+#include "config.h"
+#include "math.h"
+
+//include flash lib
+#include "w25qxx.h"
 
 //include game
+//#include "../game/realPong/realPong.h"
+#include "../inc/Controler.h"
+
+#if (MEMORY_FLASH == 1)
+
 #include "../game/pong/pong.h"
+
+#endif
+
+//include menu interface
+
+//include menu interface
 
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
+
+
+
 
 /* USER CODE END PTD */
 
@@ -60,7 +82,33 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+/*
 int8_t buttonStats[] = {0,0,0,0,0,0,0,0};
+
+uint8_t indexFlash[1] = {0};
+uint8_t buffer1[20];
+uint8_t buffer2[100] = {0};
+*/
+
+#if (MEMORY_FLASH == 1)
+
+int8_t buttonStats[] = {0,0,0,0,0,0,0,0};
+
+uint8_t indexFlash[1] = {0};
+uint8_t buffer1[SIZE_CODE];
+
+#else
+
+stepMenu step = STEP_INIT;
+uint8_t idGame = 0;
+
+//initialise the program :
+static Program_t myGame;
+static game_fun_t pGame;
+
+#endif
+
 /* USER CODE END 0 */
 
 /**
@@ -79,6 +127,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
+  HAL_Delay(1000);
 
   /* USER CODE END Init */
 
@@ -92,23 +141,131 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_SPI1_Init();
+  MX_SPI2_Init();
+  MX_UART4_Init();
   /* USER CODE BEGIN 2 */
 
+  W25qxx_Init();
+
+  //Init The screen
   ssd1306_Init();
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+#if (MEMORY_FLASH == 0)
+
   while (1)
   {
-    /* USER CODE END WHILE */
-
+	/* USER CODE END WHILE */
     /* USER CODE BEGIN 3 */
+	static uint8_t game_running = 0;
+	switch(step){
+		case STEP_INIT : {
+			step = STEP_MENU;
+			break;
+		}
+		case STEP_MENU : {
+			game_running = 0;
+			drawMenu(&game_running);
+			if (game_running){
+				step = STEP_LOAD_GAME;
+			}else{
+				step = STEP_BACKGROUND;
+			}
+			break;
+		}
+		case STEP_LOAD_GAME: {
+			loadGame();
+			step = STEP_GAME;
+			break;
+		}
+		case STEP_GAME : {
+			runGame();
+			step = STEP_BACKGROUND;
+			break;
+		}
+		case STEP_BACKGROUND : {
+			MUSIC_Process_main();
 
-	  pong();
+			if (!game_running){
+				step = STEP_MENU;
+				//actualiseMenu();
+			}else if(getSelectButton()){
+				step = STEP_MENU;
+				actualiseMenu();
+			}else{
+				step = STEP_GAME;
+			}
+			break;
+		}
+		}
 
-  }
+  	}
+#else
+
+  	//0x8003ca4
+	extern uint8_t _begin_game;
+	extern uint8_t _end_game;
+
+	volatile uint8_t *pbegin = &_begin_game;
+	volatile uint8_t *pend = &_end_game;
+
+	/*while(1){
+	  ssd1306_TestCircle();
+	}*/
+	//initialise the program :
+	static Program_t myGame;
+	static game_fun_t pGame;
+
+
+	//Copy the game into the ram
+	//Copy(myGAME.code)
+	uint8_t * pG;
+	pG = (uint8_t *)pGame;
+	uint32_t i = 0;
+	while ((pbegin+i) < pend){
+	  myGame.code[i] = pbegin[i];
+	  i++;
+	}
+
+
+	W25qxx_EraseSector(0);
+	int8_t b[1] = {1};
+	W25qxx_WriteSector(b, 0, 0, 1);
+	char text[20] = MEMORY_NAME;
+	W25qxx_WriteSector(text, 0, 1, 20);
+
+
+	W25qxx_EraseSector(1);
+	W25qxx_WriteSector(myGame.code,1, 0, SIZE_CODE);
+
+	W25qxx_ReadSector(buffer1, 1, 0, SIZE_CODE);
+
+	//Init the struct with the drivers
+	static Driver_t drivers;
+	init_drivers(&drivers);
+	myGame.driver = &drivers;
+
+	//Start the program :
+	pGame = (&myGame.code[0]) + 1;
+	myGame.state = 0;
+	volatile uint8_t never = 0;
+	if(never)
+	  pong(&myGame);
+	while(1){
+	  //pong(&myGame);
+	  pGame(&myGame);
+	}
+
+	//Make sur the function isn't dump by the compilator
+
+	//realPong(&myGame);
+	pong(&myGame);
+
+
+#endif
   /* USER CODE END 3 */
 }
 
@@ -160,32 +317,52 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 
-void readButton(void){
-	static int8_t it = 0;
-	if(it >= 10){
-		it = 0;
-		for(int i=0; i<7; i++){
-			buttonStats[i] = (int8_t)HAL_GPIO_ReadPin(GPIOE, 1<<i);
-		}
-		buttonStats[7] = (int8_t)HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13);
-	}else{
-		it++;
-	}
+void init_drivers(Driver_t *d){
+	d->getButtonStats = &getButtonStats;
+	d->ssd1306_DrawCircle = &ssd1306_DrawCircle;
+	d->ssd1306_DrawRectangle = &ssd1306_DrawRectangle;
+	d->ssd1306_Fill = &ssd1306_Fill;
+	d->ssd1306_Line = &ssd1306_Line;
+	d->ssd1306_UpdateScreen = &ssd1306_UpdateScreen;
+	d->MUSIC_PlayMusic = &MUSIC_PlayMusic;
+	d->MUSIC_PlaySound = &MUSIC_PlaySound;
+	d->MUSIC_Stop = &MUSIC_Stop;
+	d->ssd1306_SetCursor = &ssd1306_SetCursor;
+	d->ssd1306_WriteString_better = &ssd1306_WriteString_better;
+	d->cos = &cos;
+	d->sin = &sin;
+	d->tan = &tan;
+	d->ssd1306_WriteChar = &ssd1306_WriteChar;
 }
 
-InputButton getButtonStats(void){
-	InputButton ib = {
-			buttonStats[0],
-			buttonStats[1],
-			buttonStats[2],
-			buttonStats[3],
-			buttonStats[4],
-			buttonStats[5],
-			buttonStats[6],
-			buttonStats[7]
-	};
-	return ib;
+#if (MEMORY_FLASH == 0)
+void loadGame(){
+	//Load game from flash to ram
+	W25qxx_ReadSector(myGame.code, idGame, 0, SIZE_CODE);
+
+
+	//Init the struct with the drivers
+	static Driver_t drivers;
+	init_drivers(&drivers);
+	myGame.driver = &drivers;
+
+	//Start the program :
+	pGame = (&myGame.code[0]) + 1;
+	myGame.state = 0;
 }
+
+void runGame(){
+	pGame(&myGame);
+	//realPong(&myGame); //DEBUG
+}
+
+void setStep(uint8_t newStep){
+	step = newStep;
+}
+void setIdGame(uint8_t newID){
+	idGame = newID;
+}
+#endif
 
 /* USER CODE END 4 */
 

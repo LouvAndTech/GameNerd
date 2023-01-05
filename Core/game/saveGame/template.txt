@@ -1,0 +1,41 @@
+/*
+ * pong.c
+ *
+ *  Created on: 
+ *      Author:
+ */
+#include "main.h"
+
+#include "../lib/ssd1306.h"
+#include "../lib/ssd1306_tests.h"
+#include "../game/pong/pong.h"
+
+typedef enum{
+    INIT=0,
+    GAME
+}states;
+
+typedef struct{
+	InputButton buttonStat;
+}ram_pong;
+
+
+void pong(Program_t *prog){
+    ram_pong *myRam = (ram_pong*) prog->ram;
+    switch(prog->state){
+        case INIT:{
+        	prog->state = GAME;
+
+        	// your code of initialisation
+
+            break;
+            }
+        case GAME:{
+        	prog->driver->getButtonStats(&myRam->buttonStat);
+
+        	// your code of game
+
+            break;
+        }
+    }
+}
